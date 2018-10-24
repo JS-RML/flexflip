@@ -22,3 +22,53 @@ by in palm camera with Apriltag information; robot arm control on Moveit.
 ## Get started:
 The following steps will help to run the software step by step:
 #### 1.Initiate the soft gripper control:
+Run ROS core:
+"""
+roscore
+"""
+run rosserial_python package(serial_node may varies):
+"""
+rosrun rosserial_python serial_node.py /dev/ttyACM0
+"""
+test the gripper
+"""
+rostopic pub soft std_msgs/UInt16 1 --once
+"""
+#### 2.Setup apriltags detection:
+run usb_cam package:
+"""
+roslaunch usb_cam usb_cam-test.launch
+"""
+link to image_proc:
+"""
+ROS_NAMESPACE=usb_cam rosrun image_proc image_proc
+"""
+launch apriltags detection:
+"""
+roslaunch apriltags_ros example.launch 
+"""
+display tag info:
+"""
+rostopic echo /tag_detections
+"""
+#### 3.Setup univeral robot control:
+launch robot driver(IP address maybe different):
+"""
+roslaunch ur_modern_driver ur10_bringup.launch robot_ip:=192.168.1.10 [reverse_port:=REVERSE_PORT]
+"""
+launch UR10 planning execution:
+"""
+roslaunch ur10_moveit_config ur10_moveit_planning_execution.launch limited:=true 
+"""
+run MoveIt!:
+"""
+roslaunch ur10_moveit_config moveit_rviz.launch config:=true  
+"""
+subsrcibe to the gripper frame:
+"""
+rosrun a4_paper_turning soft_gripper_frame.py
+"""
+run python code:
+"""
+rosrun a4_paper_turning page_turning_1D_aug_demo.py
+"""
