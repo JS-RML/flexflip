@@ -5,12 +5,12 @@ by in palm camera with Apriltag information; robot arm control on Moveit.
 
 ## Prerequisites:
 #### Hardware:
-1.Universal Robot UR10
-2.3D printed soft gripper
-3.In palm camera
-4.Arduino
-5.DAC module
-6.Two SMC ITV 0030 series electro-pneumatic regulator
+1. Universal Robot UR10
+2. 3D printed soft gripper
+3. In palm camera
+4. Arduino
+5. DAC module
+6. Two SMC ITV 0030 series electro-pneumatic regulator
 #### Software:
 1.[ROS Kinetic](http://wiki.ros.org/kinetic)
 2.[ROS UR modern driver](https://github.com/ros-industrial/ur_modern_driver)
