@@ -1,0 +1,6 @@
+<launch>
+
+  <node name="ur10_myplan_test" pkg="ur_moveit_myplan" type="ur10_myplan_test" respawn="false" output="screen">
+  </node>
+
+</launch>

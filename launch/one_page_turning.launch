@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<!-- This is Zachary Chunli JIANG's launch file for one_page_turning task -->
+
+<launch>
+
+  <!-- USB_CAM nodes -->
+  <node name="usb_cam" pkg="usb_cam" type="usb_cam_node" output="screen" >
+    <param name="video_device" value="/dev/video1" />
+    <param name="image_width" value="640" />
+    <param name="image_height" value="480" />
+    <param name="pixel_format" value="yuyv" />
+    <param name="camera_frame_id" value="usb_cam" />
+    <param name="io_method" value="mmap"/>
+  </node>
+  <node name="image_view" pkg="image_view" type="image_view" respawn="false" output="screen">
+    <remap from="image" to="/usb_cam/image_raw"/>
+    <param name="autosize" value="true" />
+  </node>
+  
+  <!--image proc node -->
+  <node name="image_proc" pkg="image_proc" type="image_proc" ns="usb_cam"/>
+  
+  <!-- April_tag node -->
+  <include file="$(find apriltags_ros)/launch/example.launch"/>
+    
+  <!-- ur_modern_driver node -->
+  <include file="$(find ur_modern_driver)/launch/ur_bringup.launch">
+    <arg name="robot_ip" value="192.168.1.10"/>
+  </include>
+
+  <!-- Arduino node: serial_node -->
+  <node name="ros_arduino" pkg="rosserial_python" type="serial_node.py" output="screen">
+    <param name="~port" value="/dev/ttyACM0" />
+  </node>
+ 
+  <!-- ur10_moveit_planning node -->
+  <include file="$(find ur10_moveit_config)/launch/ur10_moveit_planning_execution.launch">
+    <arg name="limited" value="true"/>
+  </include>
+  
+  <!-- moveit_rviz node -->
+  <include file="$(find ur10_moveit_config)/launch/moveit_rviz.launch"/>
+       <arg name="config" value="true"/>
+  </include>
+
+</launch>
