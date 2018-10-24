@@ -72,3 +72,5 @@ run python code:
 ```
 rosrun a4_paper_turning page_turning_1D_aug_demo.py
 ```
+## Author
+Chunli JIANG (cjiangab@ust.hk)
