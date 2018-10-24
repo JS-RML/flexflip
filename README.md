@@ -12,13 +12,13 @@ by in palm camera with Apriltag information; robot arm control on Moveit.
 5. DAC module
 6. Two SMC ITV 0030 series electro-pneumatic regulator
 #### Software:
-1.[ROS Kinetic](http://wiki.ros.org/kinetic)
-2.[ROS UR modern driver](https://github.com/ros-industrial/ur_modern_driver)
-3.[ROS universal_robot Package](http://wiki.ros.org/universal_robot)
-4.[ROS usb_cam package](http://wiki.ros.org/usb_cam)
-5.[ROS apriltags_ros package](http://wiki.ros.org/apriltags_ros)
-6.[MoveIt!](https://moveit.ros.org/)
-7.[ROS rosserial_arduino package](http://wiki.ros.org/rosserial_arduino/Tutorials/Arduino%20IDE%20Setup#Installing_the_Software)
+1. [ROS Kinetic](http://wiki.ros.org/kinetic)
+2. [ROS UR modern driver](https://github.com/ros-industrial/ur_modern_driver)
+3. [ROS universal_robot Package](http://wiki.ros.org/universal_robot)
+4. [ROS usb_cam package](http://wiki.ros.org/usb_cam)
+5. [ROS apriltags_ros package](http://wiki.ros.org/apriltags_ros)
+6. [MoveIt!](https://moveit.ros.org/)
+7. [ROS rosserial_arduino package](http://wiki.ros.org/rosserial_arduino/Tutorials/Arduino%20IDE%20Setup#Installing_the_Software)
 ## Get started:
 The following steps will help to run the software step by step:
 #### 1.Initiate the soft gripper control:
