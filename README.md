@@ -22,7 +22,7 @@ by in palm camera with Apriltag information; robot arm control on Moveit.
 ## Get started:
 The following steps will help to run the software step by step:
 #### 1.Initiate the soft gripper control:
-Run ROS core:
+start a ROS core:
 ```
 roscore
 ```
