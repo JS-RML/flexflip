@@ -1,13 +1,13 @@
 # soft_gripper_page_turning
-ROS package: Page turning by soft robotics gripper with UR10 robot arm. This project is to turning paper or paper strip by 3D printed 
-soft robtoics gripper. The codes has 3 major parts: soft gripper actuation by Arduino and electro-pneumatic regulator; object detection
-by in palm camera with Apriltag information; robot arm control on Moveit.
+ROS package: Page turning by soft robotics gripper with UR10 robot arm. This project is to turn paper or paper strip by 3D printed 
+soft robtoics gripper. The code has 3 major parts: soft gripper actuation by Arduino and electro-pneumatic regulator; object detection
+by in palm camera by Apriltag; UR10 robot arm control on Moveit.
 
 ## Prerequisites:
 #### Hardware:
 1. Universal Robot UR10
 2. 3D printed soft gripper
-3. In palm camera
+3. USB camera
 4. Arduino
 5. DAC module
 6. Two SMC ITV 0030 series electro-pneumatic regulator
