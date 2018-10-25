@@ -66,11 +66,11 @@ roslaunch ur10_moveit_config moveit_rviz.launch config:=true
 ```
 subsrcibe to the gripper frame:
 ```
-rosrun a4_paper_turning soft_gripper_frame.py
+rosrun soft_gripper_page_turning soft_gripper_frame.py
 ```
 run python code:
 ```
-rosrun a4_paper_turning page_turning_1D_aug_demo.py
+rosrun soft_gripper_page_turning page_turning_1D_aug_demo.py
 ```
 ## Author
 Chunli JIANG (cjiangab@ust.hk)
