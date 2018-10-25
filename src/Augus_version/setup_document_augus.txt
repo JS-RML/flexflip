@@ -15,5 +15,5 @@ $ rostopic echo /tag_detections
 $ roslaunch ur_modern_driver ur10_bringup.launch robot_ip:=192.168.1.10 [reverse_port:=REVERSE_PORT]
 $ roslaunch ur10_moveit_config ur10_moveit_planning_execution.launch limited:=true   
 $ roslaunch ur10_moveit_config moveit_rviz.launch config:=true  
-$ rosrun a4_paper_turning soft_gripper_frame.py
-$ rosrun a4_paper_turning page_turning_1D_aug_1.py
+$ rosrun soft_gripper_page_turning soft_gripper_frame.py
+$ rosrun soft_gripper_page_turning page_turning_1D_aug_demo.py
