@@ -14,7 +14,7 @@ by in palm camera and Apriltags; UR10 robot arm control on Moveit.
 #### Software:
 1. [ROS Kinetic](http://wiki.ros.org/kinetic)
 2. [ROS UR modern driver](https://github.com/ros-industrial/ur_modern_driver)
-3. [ROS universal_robot Package](http://wiki.ros.org/universal_robot)
+3. [ROS universal_robot package](http://wiki.ros.org/universal_robot)
 4. [ROS usb_cam package](http://wiki.ros.org/usb_cam)
 5. [ROS apriltags_ros package](http://wiki.ros.org/apriltags_ros)
 6. [MoveIt!](https://moveit.ros.org/)
