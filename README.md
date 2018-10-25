@@ -26,7 +26,7 @@ start a ROS core:
 ```
 roscore
 ```
-run rosserial_python package(serial_node may varies):
+run rosserial_python package(serial_node may vary):
 ```
 rosrun rosserial_python serial_node.py /dev/ttyACM0
 ```
