@@ -10,13 +10,16 @@ int i=1;
 ros::NodeHandle nh;
 void soft_cb(const std_msgs::UInt16& cmd_msg){
    digitalWrite(13, HIGH-digitalRead(13)); 
-   for(int kk=0; kk<=255;i++){ 
-     if(cmd_msg.data==kk){
-      analogWrite(sigL, kk); 
-      delay(100);
-      analogWrite(sigR, 180);
+   if(cmd_msg.data==0){
+      analogWrite(sigL, 0); 
+      delay(500);
+      analogWrite(sigR, 0);
     }
-   }
+    else{
+      analogWrite(sigL, cmd_msg.data); 
+      delay(500);
+      analogWrite(sigR, 110);
+    }
 }
 
 ros::Subscriber<std_msgs::UInt16> sub("soft", soft_cb);
