@@ -372,26 +372,19 @@ def main_logic(x_value,z_value,theta_value,i_test):
       rospy.sleep(0.5)
       
       arduino_pub = rospy.Publisher('/soft', UInt16, queue_size=1)
-      rospy.sleep(6)
-      arduino_pub.publish(180)
-      rospy.sleep(6)
-
-      move_waypoints(0,0,0.03,0.6)
       rospy.sleep(3)
-
-      arduino_pub = rospy.Publisher('/soft', UInt16, queue_size=1)
-      rospy.sleep(6)
-      arduino_pub.publish(220)
+      arduino_pub.publish(200)
       rospy.sleep(6)
 
-      move_waypoints(0,0.1,0,0.6)
       rospy.sleep(0.5)
-      move_waypoints(0,-0.1,0,0.6)
+      move_frame(0,0,0,0,0,3*pi/180,0.2, '/soft_gripper')
+      rospy.sleep(1)
+
       rospy.sleep(0.5)
-      move_waypoints(0,0.1,0,0.6)
-      rospy.sleep(0.5)
-      move_waypoints(0,-0.1,0,0.6)
-      rospy.sleep(0.5)
+      move_frame(0.0,0.0,0,0,0,-9*pi/180,0.2, '/soft_gripper')
+      rospy.sleep(0.5) 
+      move_waypoints(-0.02,0,-0.025,0.2)
+      rospy.sleep(1)
 
       arduino_pub = rospy.Publisher('/soft', UInt16, queue_size=1)
       rospy.sleep(3) 
@@ -432,8 +425,8 @@ def start_robot():
   go_to_home()
 
   for k in range(0,1):  # theta value
-    for m in range(3,4): # x value
-      for n in range(2,3): # z value
+    for m in range(5,6): # x value
+      for n in range(1,2): # z value
         main_logic(0.0+m*0.01,0.110+n*0.001,k+0.001,10)
 
   print "============ STOPPING"
