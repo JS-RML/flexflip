@@ -30,12 +30,11 @@ from math import sqrt, pi, acos, sin, cos , atan2, tan
 
 from std_msgs.msg import String,Empty,UInt16
 
+rospy.init_node('move_ur10_robot', anonymous=True)
 listener = tf.TransformListener()
 ## First initialize moveit_commander and rospy.
 print "============ Starting tutorial setup"
 moveit_commander.roscpp_initialize(sys.argv)
-rospy.init_node('move_ur10_robot', anonymous=True)
-
 
 ## Instantiate a RobotCommander object.  This object is an interface to
 ## the robot as a whole.
@@ -373,9 +372,26 @@ def main_logic(x_value,z_value,theta_value,i_test):
       rospy.sleep(0.5)
       
       arduino_pub = rospy.Publisher('/soft', UInt16, queue_size=1)
-      rospy.sleep(3)
+      rospy.sleep(6)
       arduino_pub.publish(1)
+      rospy.sleep(6)
+
+      move_waypoints(0,0,0.03,0.6)
       rospy.sleep(3)
+
+      arduino_pub = rospy.Publisher('/soft', UInt16, queue_size=1)
+      rospy.sleep(6)
+      arduino_pub.publish(2)
+      rospy.sleep(6)
+
+      move_waypoints(0,0.1,0,0.6)
+      rospy.sleep(0.5)
+      move_waypoints(0,-0.1,0,0.6)
+      rospy.sleep(0.5)
+      move_waypoints(0,0.1,0,0.6)
+      rospy.sleep(0.5)
+      move_waypoints(0,-0.1,0,0.6)
+      rospy.sleep(0.5)
 
       arduino_pub = rospy.Publisher('/soft', UInt16, queue_size=1)
       rospy.sleep(3) 
@@ -417,8 +433,8 @@ def start_robot():
 
   for k in range(0,1):  # theta value
     for m in range(3,4): # x value
-      for n in range(3,5): # z value
-        main_logic(0.0+m*0.01,0.110+n*0.001,k+0.001,2)
+      for n in range(2,3): # z value
+        main_logic(0.0+m*0.01,0.110+n*0.001,k+0.001,10)
 
   print "============ STOPPING"
 ##########################################################################

@@ -28,13 +28,14 @@ from trajectory_msgs.msg import JointTrajectoryPoint
 from geometry_msgs.msg import PoseStamped, Pose
 from math import sqrt, pi, acos, sin, cos , atan2, tan
 
-from std_msgs.msg import String,Empty,UInt16
+from std_msgs.msg import String,Empty,UInt16,Int16
 
-listener = tf.TransformListener()
+rospy.init_node('move_ur10_robot', anonymous=True)
+new_listener = tf.TransformListener()
 ## First initialize moveit_commander and rospy.
 print "============ Starting tutorial setup"
 moveit_commander.roscpp_initialize(sys.argv)
-rospy.init_node('move_ur10_robot', anonymous=True)
+
 
 
 ## Instantiate a RobotCommander object.  This object is an interface to
@@ -238,8 +239,8 @@ def move_target(x, y, z, ox, oy, oz, ow, vel):
 
 #####################################################################
 def move_frame(x, y, z, rx, ry, rz, vel, tg_frame):  ## move respect to tg_frame rotation in radius
-  listener.waitForTransform('/base_link',tg_frame,rospy.Time(),rospy.Duration())
-  (base_g_trans,base_g_rot) = listener.lookupTransform('/base_link', tg_frame, rospy.Time(0)) #express frame arg2 in frame arg1
+  new_listener.waitForTransform('/base_link',tg_frame,rospy.Time(),rospy.Duration())
+  (base_g_trans,base_g_rot) = new_listener.lookupTransform('/base_link', tg_frame, rospy.Time(0)) #express frame arg2 in frame arg1
   base_g_rot_mat = tf.transformations.quaternion_matrix(base_g_rot)
   zaxis = (0, 0, 1)
   yaxis = (0, 1, 0)
@@ -256,7 +257,7 @@ def move_frame(x, y, z, rx, ry, rz, vel, tg_frame):  ## move respect to tg_frame
   base_g_trans_new = numpy.dot(base_g_rot_mat, move_frame_xyz)
   base_g_rot_mat_new[:3,3] = numpy.array([base_g_trans_new[0], base_g_trans_new[1], base_g_trans_new[2]])
 
-  (g_ee_trans,g_ee_rot) = listener.lookupTransform(tg_frame, '/ee_link', rospy.Time(0)) #express frame arg2 in frame arg1
+  (g_ee_trans,g_ee_rot) = new_listener.lookupTransform(tg_frame, '/ee_link', rospy.Time(0)) #express frame arg2 in frame arg1
   g_ee_rot_mat = tf.transformations.quaternion_matrix(g_ee_rot)
   g_ee_rot_mat[:3,3] = numpy.array(g_ee_trans)
   
@@ -413,11 +414,10 @@ def start_robot():
   print robot.get_current_state()
   ##effector_roll()
   go_to_home()
-
-  for k in range(5,6):  # theta value
-    for m in range(7,8): # x value
-      for n in range(0,3): # z value
-        main_logic(0.0+m*0.01,0.107+n*0.001,k+0.001,5)
+  for k in range(12,13):  # theta value
+    for m in range(4,5): # x value
+      for n in range(0,1): # z value
+        main_logic(0.0+m*0.01,0.100+n*0.001,k+0.001,5)
 
   print "============ STOPPING"
 ##########################################################################

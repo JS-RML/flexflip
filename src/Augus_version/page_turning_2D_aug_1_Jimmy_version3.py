@@ -28,13 +28,14 @@ from trajectory_msgs.msg import JointTrajectoryPoint
 from geometry_msgs.msg import PoseStamped, Pose
 from math import sqrt, pi, acos, sin, cos , atan2, tan
 
-from std_msgs.msg import String,Empty,UInt16
+from std_msgs.msg import String,Empty,UInt16,Int16
 
-listener = tf.TransformListener()
+rospy.init_node('move_ur10_robot', anonymous=True)
+new_listener = tf.TransformListener()
 ## First initialize moveit_commander and rospy.
 print "============ Starting tutorial setup"
 moveit_commander.roscpp_initialize(sys.argv)
-rospy.init_node('move_ur10_robot', anonymous=True)
+
 
 
 ## Instantiate a RobotCommander object.  This object is an interface to
@@ -174,8 +175,8 @@ def go_to_home():
   group.set_joint_value_target(group_variable_values)
   plan = group.plan()
   print "============ Waiting while RVIZ displays plan2..."
-  rospy.sleep(2)
-  scaled_traj2 = scale_trajectory_speed(plan, 0.6)
+  rospy.sleep(3)
+  scaled_traj2 = scale_trajectory_speed(plan, 0.4)
   group.execute(scaled_traj2)
   global init_x  
   global init_y 
@@ -192,9 +193,9 @@ def move_waypoints(px, py, pz, vel):
   waypoints = []
   waypoints.append(group.get_current_pose().pose)
   wpose = copy.deepcopy(group.get_current_pose().pose)
-  wpose.position.x += px
-  wpose.position.y += py
-  wpose.position.z += pz
+  wpose.position.x = px + wpose.position.x
+  wpose.position.y = py + wpose.position.y
+  wpose.position.z = pz + wpose.position.z
   waypoints.append(copy.deepcopy(wpose))
   (plan, fraction) = group.compute_cartesian_path(
                                waypoints,   # waypoints to follow
@@ -235,11 +236,32 @@ def move_target(x, y, z, ox, oy, oz, ow, vel):
   scaled_traj = scale_trajectory_speed(plan, vel)
   print "============ Waiting while RVIZ displays plan1..."
   group.execute(scaled_traj)
-
+#####################################################################
+def move_z_axis(deltaZ):
+      curr_x = group.get_current_pose().pose.position.x
+      curr_y = group.get_current_pose().pose.position.y
+      curr_z = group.get_current_pose().pose.position.z
+      curr_x_ori = group.get_current_pose().pose.orientation.x
+      curr_y_ori = group.get_current_pose().pose.orientation.y
+      curr_z_ori = group.get_current_pose().pose.orientation.z
+      curr_w_ori = group.get_current_pose().pose.orientation.w
+      rospy.sleep(3)      
+      move_target   (curr_x,curr_y ,curr_z+deltaZ,curr_x_ori,curr_y_ori,curr_z_ori,curr_w_ori,0.4)
+      
+#####################################################################
+def move_third_joint(degree,vel=0.2):
+       group_variable_values=group.get_current_joint_values()
+       group_variable_values[3]-=degree*pi/180
+       group.set_joint_value_target(group_variable_values)
+       plan=group.plan()
+       rospy.sleep(0.08)
+       trajectory=scale_trajectory_speed(plan,vel)
+       group.execute(plan)
+       print group.get_current_joint_values()[3]*180/pi
 #####################################################################
 def move_frame(x, y, z, rx, ry, rz, vel, tg_frame):  ## move respect to tg_frame rotation in radius
-  listener.waitForTransform('/base_link',tg_frame,rospy.Time(),rospy.Duration())
-  (base_g_trans,base_g_rot) = listener.lookupTransform('/base_link', tg_frame, rospy.Time(0)) #express frame arg2 in frame arg1
+  new_listener.waitForTransform('/base_link',tg_frame,rospy.Time(),rospy.Duration())
+  (base_g_trans,base_g_rot) = new_listener.lookupTransform('/base_link', tg_frame, rospy.Time(0)) #express frame arg2 in frame arg1
   base_g_rot_mat = tf.transformations.quaternion_matrix(base_g_rot)
   zaxis = (0, 0, 1)
   yaxis = (0, 1, 0)
@@ -256,7 +278,7 @@ def move_frame(x, y, z, rx, ry, rz, vel, tg_frame):  ## move respect to tg_frame
   base_g_trans_new = numpy.dot(base_g_rot_mat, move_frame_xyz)
   base_g_rot_mat_new[:3,3] = numpy.array([base_g_trans_new[0], base_g_trans_new[1], base_g_trans_new[2]])
 
-  (g_ee_trans,g_ee_rot) = listener.lookupTransform(tg_frame, '/ee_link', rospy.Time(0)) #express frame arg2 in frame arg1
+  (g_ee_trans,g_ee_rot) = new_listener.lookupTransform(tg_frame, '/ee_link', rospy.Time(0)) #express frame arg2 in frame arg1
   g_ee_rot_mat = tf.transformations.quaternion_matrix(g_ee_rot)
   g_ee_rot_mat[:3,3] = numpy.array(g_ee_trans)
   
@@ -283,7 +305,7 @@ def rotate(theta0, theta1, theta2, theta3, theta4, theta5):
   target_joint_values[5] = group_variable_values[5] + theta5
   group.set_joint_value_target(target_joint_values)
   plan = group.plan()
-  rospy.sleep(1)
+  rospy.sleep(3)
   print "============ Waiting while RVIZ displays plan2..."
   scaled_traj2 = scale_trajectory_speed(plan, 0.5)
   group.execute(scaled_traj2)
@@ -303,9 +325,12 @@ def quat2eular(qx, qy, qz, qw):
 #^^^^^^^^^^^^^start the control logic here ^^^^^^^^^^^^^^^^^^^^^^^^^
 ####################################################
 def main_logic(x_value,z_value,theta_value,i_test):
-  print "==========start1"
-  
-  for num_test in range(0,i_test):
+   print "==========start1"
+   rospy.sleep(1)
+   arduino_pub = rospy.Publisher('/soft', Int16, queue_size=1)
+   rospy.sleep(3)
+   
+   for num_test in range(0,i_test):
     cam_pose=rospy.wait_for_message('/tag_detections', AprilTagDetectionArray, timeout = 2.0)
     while not cam_pose.detections:
       cam_pose=rospy.wait_for_message('/tag_detections', AprilTagDetectionArray, timeout = 2.0)
@@ -337,8 +362,8 @@ def main_logic(x_value,z_value,theta_value,i_test):
       qr_y = cam_pose.detections[0].pose.pose.position.y 
 
       if abs(qr_x)>0.002 or abs(qr_y)>0.002:
-        rospy.sleep(0.5)
-        move_waypoints(qr_x, -qr_y, 0, 0.4)
+        rospy.sleep(2)
+        move_waypoints(qr_x, -qr_y, 0, 0.2)
 
         cam_pose=rospy.wait_for_message('/tag_detections', AprilTagDetectionArray, timeout = 4.0)
         while not cam_pose.detections:
@@ -348,12 +373,11 @@ def main_logic(x_value,z_value,theta_value,i_test):
 
         if abs(qr_x)>0.002 or abs(qr_y)>0.002:
           rospy.sleep(0.5)
-          move_waypoints(qr_x, -qr_y, 0, 0.6)
+          move_waypoints(qr_x, -qr_y, 0, 0.2)
           print('das ist !')
-      
-      rospy.sleep(0.5)
-      move_waypoints(-x_value,0.13,-0.1,0.6)
-      rospy.sleep(1)
+      rospy.sleep(2)
+      move_waypoints(-x_value,0.08,-0.1,0.2)
+      rospy.sleep(2)
 
       curr_x = group.get_current_pose().pose.position.x
       curr_y = group.get_current_pose().pose.position.y
@@ -362,28 +386,47 @@ def main_logic(x_value,z_value,theta_value,i_test):
       curr_y_ori = group.get_current_pose().pose.orientation.y
       curr_z_ori = group.get_current_pose().pose.orientation.z
       curr_w_ori = group.get_current_pose().pose.orientation.w
-      move_target(curr_x,curr_y ,z_value,curr_x_ori,curr_y_ori,curr_z_ori,curr_w_ori,0.6)
+      move_target(curr_x,curr_y ,z_value,curr_x_ori,curr_y_ori,curr_z_ori,curr_w_ori,0.4)
 
-      rospy.sleep(0.5)
+      rospy.sleep(3)
 
       angle=theta_value*pi/180
       print"angle", angle 
-      rospy.sleep(0.5)
-      move_frame(0, 0, 0,0,0,angle,0.2, '/soft_gripper')
-      rospy.sleep(0.5)
-      
-      arduino_pub = rospy.Publisher('/soft', UInt16, queue_size=1)
-      rospy.sleep(3)
-      arduino_pub.publish(1)
+      move_frame(0, 0, 0, 0, 0, angle, 0.2, '/soft_gripper')
       rospy.sleep(3)
 
-      arduino_pub = rospy.Publisher('/soft', UInt16, queue_size=1)
-      rospy.sleep(3) 
+      for k in range (1,5):
+       print"This is ", k ," times:"
+       
+       arduino_pub.publish(4343)
+       rospy.sleep(3)
+       arduino_pub.publish(4349) 
+       rospy.sleep(3)
+       arduino_pub.publish(4949)
+       rospy.sleep(3)
+       move_third_joint(-20,0.4)
+       rospy.sleep(3)
+       move_third_joint(20,0.4)
+       rospy.sleep(3)
+       move_third_joint(3)
+       rospy.sleep(3)
+       move_z_axis(-0.0009)
+       rospy.sleep(5)
+       move_waypoints(0.004,0,0,0.2)
+       rospy.sleep(5) 
+       arduino_pub.publish(4900) 
+       rospy.sleep(3)
+       arduino_pub.publish(1415)
+       rospy.sleep(2)
+       move_third_joint(-3)
+       arduino_pub.publish(4949)
+       rospy.sleep(3)
+       
+
       arduino_pub.publish(0)
-
+      rospy.sleep(3)
       go_to_home()
-    else:
-      num_test=num_test-1
+    
 
 #####################################################################
 
@@ -414,11 +457,10 @@ def start_robot():
   print robot.get_current_state()
   ##effector_roll()
   go_to_home()
-
-  for k in range(0,1):  # theta value
-    for m in range(3,4): # x value
-      for n in range(3,4): # z value
-        main_logic(0.0+m*0.01,0.110+n*0.001,k+0.001,5)
+  for k in range(9,10):  # theta value
+    for m in range(5,6): # x value
+      for n in range(4,5): # z value
+        main_logic(0.0+m*0.01+0.003,0.100+n*0.001,k+0.001,1)
 
   print "============ STOPPING"
 ##########################################################################
@@ -429,4 +471,5 @@ if __name__=='__main__':
     rospy.spin()
   except KeyboardInterrupt:
     print("Shutting down")
+    go_to_home()
 moveit_commander.os._exit(0)

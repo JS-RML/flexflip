@@ -148,7 +148,7 @@ def add_collision_object3(x_length, y_length, z_length):
   ## Add collision object
   obj_pose = geometry_msgs.msg.PoseStamped()
   obj_pose.header.frame_id = robot.get_planning_frame()
-  obj_pose.pose.position.x = 0.9
+  obj_pose.pose.position.x = 1.2
   obj_pose.pose.position.y = 0.
   obj_pose.pose.position.z = 0.5
   scene.add_box("table3", obj_pose, (x_length, y_length, z_length)) # x_axis, y_axis,
@@ -166,8 +166,8 @@ def go_to_home():
   ## To make the end effector vertical to the plane,theta1+theta2+theta3 = -pi/2
   ## Following two sets of values are for left and right arm respectively
   group_variable_values[0] = 0
-  group_variable_values[1] = -pi*100/180
-  group_variable_values[2] = pi*125/180
+  group_variable_values[1] = -pi*75/180
+  group_variable_values[2] = pi*90/180
   group_variable_values[3] = -pi/2-(group_variable_values[1]+group_variable_values[2])
   group_variable_values[4] = -pi*1/2
   group_variable_values[5] = pi*1/2
@@ -175,7 +175,7 @@ def go_to_home():
   plan = group.plan()
   print "============ Waiting while RVIZ displays plan2..."
   rospy.sleep(2)
-  scaled_traj2 = scale_trajectory_speed(plan, 0.6)
+  scaled_traj2 = scale_trajectory_speed(plan, 0.4)
   group.execute(scaled_traj2)
   global init_x  
   global init_y 
@@ -298,6 +298,37 @@ def quat2eular(qx, qy, qz, qw):
   euler = tf.transformations.euler_from_quaternion(quaternion)
   return euler
 
+#########################3
+def page_turn():
+  rospy.sleep(0.5)
+      
+  arduino_pub = rospy.Publisher('/soft', UInt16, queue_size=1)
+  rospy.sleep(3)
+  arduino_pub.publish(1)
+  rospy.sleep(3)
+
+  rospy.sleep(0.5)
+  move_waypoints(0,0,0.012,0.1)
+  arduino_pub = rospy.Publisher('/soft', UInt16, queue_size=1)
+  rospy.sleep(3)
+  arduino_pub.publish(2)
+  rospy.sleep(3) 
+  
+  rospy.sleep(0.5)
+  move_waypoints(-0.45,0,0,0.25)
+
+  arduino_pub = rospy.Publisher('/soft', UInt16, queue_size=1)
+  rospy.sleep(3)
+  arduino_pub.publish(0)
+  rospy.sleep(3)
+  
+  rospy.sleep(0.5)
+  move_waypoints(0,0,0.12,0.1)
+  rospy.sleep(0.5)
+  move_waypoints(0.45,0,0,0.25)
+  rospy.sleep(0.5)
+  move_waypoints(0,0,-0.132,0.1)
+
 #quaternion_from_euler(1, 2, 3, 'ryxz')
 ###################################################################
 #^^^^^^^^^^^^^start the control logic here ^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -348,11 +379,20 @@ def main_logic(x_value,z_value,theta_value,i_test):
 
         if abs(qr_x)>0.002 or abs(qr_y)>0.002:
           rospy.sleep(0.5)
-          move_waypoints(qr_x, -qr_y, 0, 0.6)
+          move_waypoints(qr_x, -qr_y, 0, 0.4)
           print('das ist !')
       
       rospy.sleep(0.5)
-      move_waypoints(-x_value,0.13,-0.1,0.6)
+      move_waypoints(-0.05,0.05,0.0,0.4)
+      rospy.sleep(1)
+
+      angle=theta_value*pi/180
+      print"angle", angle 
+      move_frame(0, 0, 0,-45*pi/180,0,0,0.2, '/soft_gripper')
+      rospy.sleep(1)
+      move_frame(0, 0, 0,0,0,angle,0.2, '/soft_gripper')
+      rospy.sleep(1)
+      move_waypoints((0.06-x_value)*1.414,(0.06-x_value)*1.414,0,0.4)
       rospy.sleep(1)
 
       curr_x = group.get_current_pose().pose.position.x
@@ -362,24 +402,19 @@ def main_logic(x_value,z_value,theta_value,i_test):
       curr_y_ori = group.get_current_pose().pose.orientation.y
       curr_z_ori = group.get_current_pose().pose.orientation.z
       curr_w_ori = group.get_current_pose().pose.orientation.w
-      move_target(curr_x,curr_y ,z_value,curr_x_ori,curr_y_ori,curr_z_ori,curr_w_ori,0.6)
+      move_target(curr_x,curr_y ,z_value,curr_x_ori,curr_y_ori,curr_z_ori,curr_w_ori,0.08)
 
-      rospy.sleep(0.5)
+      page_turn()
 
-      angle=theta_value*pi/180
-      print"angle", angle 
-      rospy.sleep(0.5)
-      move_frame(0, 0, 0,0,0,angle,0.2, '/soft_gripper')
-      rospy.sleep(0.5)
-      
-      arduino_pub = rospy.Publisher('/soft', UInt16, queue_size=1)
-      rospy.sleep(3)
-      arduino_pub.publish(1)
-      rospy.sleep(3)
+      page_turn()
 
-      arduino_pub = rospy.Publisher('/soft', UInt16, queue_size=1)
-      rospy.sleep(3) 
-      arduino_pub.publish(0)
+      page_turn()
+
+      page_turn()
+
+      page_turn()
+
+
 
       go_to_home()
     else:
@@ -414,11 +449,11 @@ def start_robot():
   print robot.get_current_state()
   ##effector_roll()
   go_to_home()
-
-  for k in range(0,1):  # theta value
-    for m in range(3,4): # x value
-      for n in range(3,4): # z value
-        main_logic(0.0+m*0.01,0.110+n*0.001,k+0.001,5)
+  print "=========robot go to home"
+  for k in range(12,13):  # theta value
+    for m in range(4,5): # x value
+      for n in range(0,1): # z value
+        main_logic(0.005+m*0.01,0.104+n*0.001,k+0.001,1)
 
   print "============ STOPPING"
 ##########################################################################

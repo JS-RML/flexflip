@@ -1,0 +1,51 @@
+#include <ros.h>
+#include <ArduinoHardware.h>
+#include <std_msgs/Empty.h>
+
+ros::NodeHandle nh;
+int sigL = 5;      //Yellow
+int sigR = 6;      //Blue
+int i=1;
+
+void messageCb( const std_msgs::Empty& toggle_msg){
+  digitalWrite(13, HIGH-digitalRead(13));  
+  // blink the led
+  analogWrite(sigL, 180*i);
+  // set the pressure of finger by pwm
+  delay(2000);
+  analogWrite(sigR, 175*i);  
+  delay(4000);
+  analogWrite(sigL,190 *i);
+  delay(100);
+  analogWrite(sigL,210 *i);
+  delay(100);
+  analogWrite(sigL,230 *i);
+  delay(100);
+  analogWrite(sigL, 255*i);
+  delay(10);
+  analogWrite(sigR,170*i);
+  delay(100);
+  analogWrite(sigR,180*i);
+  //delay(100);
+  //analogWrite(sigR,200*i);
+  if(i==1){i=0;}
+  else if (i==0){i=1;} 
+  
+}
+
+ros::Subscriber<std_msgs::Empty> sub("soft", &messageCb );
+
+void setup()
+{ 
+  pinMode(sigL, OUTPUT); 
+  pinMode(sigR, OUTPUT);
+  pinMode(13,OUTPUT);
+  nh.initNode();
+  nh.subscribe(sub);
+}
+
+void loop()
+{       
+  nh.spinOnce();
+  delay(1);
+}

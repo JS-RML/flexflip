@@ -175,7 +175,7 @@ def go_to_home():
   plan = group.plan()
   print "============ Waiting while RVIZ displays plan2..."
   rospy.sleep(2)
-  scaled_traj2 = scale_trajectory_speed(plan, 0.6)
+  scaled_traj2 = scale_trajectory_speed(plan, 0.4)
   group.execute(scaled_traj2)
   global init_x  
   global init_y 
@@ -348,11 +348,20 @@ def main_logic(x_value,z_value,theta_value,i_test):
 
         if abs(qr_x)>0.002 or abs(qr_y)>0.002:
           rospy.sleep(0.5)
-          move_waypoints(qr_x, -qr_y, 0, 0.6)
+          move_waypoints(qr_x, -qr_y, 0, 0.4)
           print('das ist !')
       
       rospy.sleep(0.5)
-      move_waypoints(-x_value,0.13,-0.1,0.6)
+      move_waypoints(-0.05,0.05,0.0,0.4)
+      rospy.sleep(1)
+
+      angle=theta_value*pi/180
+      print"angle", angle 
+      move_frame(0, 0, 0,-45*pi/180,0,0,0.2, '/soft_gripper')
+      rospy.sleep(1)
+      move_frame(0, 0, 0,0,0,angle,0.2, '/soft_gripper')
+      rospy.sleep(1)
+      move_waypoints((0.06-x_value)*1.414,(0.06-x_value)*1.414,0,0.4)
       rospy.sleep(1)
 
       curr_x = group.get_current_pose().pose.position.x
@@ -362,14 +371,8 @@ def main_logic(x_value,z_value,theta_value,i_test):
       curr_y_ori = group.get_current_pose().pose.orientation.y
       curr_z_ori = group.get_current_pose().pose.orientation.z
       curr_w_ori = group.get_current_pose().pose.orientation.w
-      move_target(curr_x,curr_y ,z_value,curr_x_ori,curr_y_ori,curr_z_ori,curr_w_ori,0.6)
+      move_target(curr_x,curr_y ,z_value,curr_x_ori,curr_y_ori,curr_z_ori,curr_w_ori,0.08)
 
-      rospy.sleep(0.5)
-
-      angle=theta_value*pi/180
-      print"angle", angle 
-      rospy.sleep(0.5)
-      move_frame(0, 0, 0,0,0,angle,0.2, '/soft_gripper')
       rospy.sleep(0.5)
       
       arduino_pub = rospy.Publisher('/soft', UInt16, queue_size=1)
@@ -414,11 +417,10 @@ def start_robot():
   print robot.get_current_state()
   ##effector_roll()
   go_to_home()
-
-  for k in range(0,1):  # theta value
-    for m in range(3,4): # x value
-      for n in range(3,4): # z value
-        main_logic(0.0+m*0.01,0.110+n*0.001,k+0.001,5)
+  for k in range(11,12):  # theta value
+    for m in range(1,5): # x value
+      for n in range(0,5): # z value
+        main_logic(0.030+m*0.01,0.099+n*0.001,k+0.001,1)
 
   print "============ STOPPING"
 ##########################################################################
