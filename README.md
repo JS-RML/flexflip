@@ -72,5 +72,8 @@ run python code:
 ```
 rosrun soft_gripper_page_turning page_turning_1D_aug_demo.py
 ```
+## Note:
+A shell script is written to set up the environment. However, the last python code has to be run independently.
+
 ## Author
-Chunli JIANG (cjiangab@ust.hk)
+Chunli JIANouG (cjiangab@ust.hk)
