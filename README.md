@@ -19,7 +19,10 @@ by in palm camera and Apriltags; UR10 robot arm control on Moveit.
 5. [ROS apriltags_ros package](http://wiki.ros.org/apriltags_ros)
 6. [MoveIt!](https://moveit.ros.org/)
 7. [ROS rosserial_arduino package](http://wiki.ros.org/rosserial_arduino/Tutorials/Arduino%20IDE%20Setup#Installing_the_Software)
-## Get started:
+## Haraware preparation:
+Stl files for 3D printing is in mesh folder. Here are the descriptive drawings:
+
+## Software Setup and tests:
 The following steps will help to run the software :
 #### 1.Initiate the soft gripper control:
 start a ROS core:
