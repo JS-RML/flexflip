@@ -21,9 +21,9 @@ by in palm camera and Apriltags; UR10 robot arm control on Moveit.
 7. [ROS rosserial_arduino package](http://wiki.ros.org/rosserial_arduino/Tutorials/Arduino%20IDE%20Setup#Installing_the_Software)
 ## Haraware preparation:
 Stl files for 3D printing is in mesh folder. Here are the descriptive drawings:
-![alt text](https://github.com/HKUST-RML/soft_gripper_page_turning/blob/master/mesh/finger_proto_1_finalized.PNG | width=64)
-![alt text](https://github.com/HKUST-RML/soft_gripper_page_turning/blob/master/mesh/eeft_assembly_unlabeled.jpg | width=64)
-![alt text](https://github.com/HKUST-RML/soft_gripper_page_turning/blob/master/mesh/gripper_on_ur10.jpg | width=64)
+![](https://github.com/HKUST-RML/soft_gripper_page_turning/blob/master/mesh/finger_proto_1_finalized.PNG | width=256)
+![](https://github.com/HKUST-RML/soft_gripper_page_turning/blob/master/mesh/eeft_assembly_unlabeled.jpg | width=256)
+![](https://github.com/HKUST-RML/soft_gripper_page_turning/blob/master/mesh/gripper_on_ur10.jpg | width=256)
 ## Software Setup and tests:
 The following steps will help to run the software :
 #### 1.Initiate the soft gripper control:
