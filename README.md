@@ -20,7 +20,7 @@ by in palm camera and Apriltags; UR10 robot arm control on Moveit.
 6. [MoveIt!](https://moveit.ros.org/)
 7. [ROS rosserial_arduino package](http://wiki.ros.org/rosserial_arduino/Tutorials/Arduino%20IDE%20Setup#Installing_the_Software)
 ## Haraware preparation:
-Stl files and descriptive drawing for manufacturing is in mesh folder. 
+Stl files and descriptive drawings for manufacturing are in mesh folder. 
 ![alt text](https://github.com/HKUST-RML/soft_gripper_page_turning/blob/master/mesh/finger_proto_1_finalized.PNG)
 <img src="https://github.com/HKUST-RML/soft_gripper_page_turning/blob/master/mesh/Descriptive_drawing.PNG" width="400">
 <img src="https://github.com/HKUST-RML/soft_gripper_page_turning/blob/master/mesh/gripper_on_ur10.jpg" width="400">
