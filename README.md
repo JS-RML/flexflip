@@ -25,7 +25,7 @@ Stl files and descriptive drawing for manufacturing is in mesh folder.
 <img src="https://github.com/HKUST-RML/soft_gripper_page_turning/blob/master/mesh/eeft_assembly_unlabeled.jpg" width="450">
 <img src="https://github.com/HKUST-RML/soft_gripper_page_turning/blob/master/mesh/gripper_on_ur10.jpg" width="300">
 
-The soft pneumatic finger is 3D printed by 95A hardness TPU on Ultimaker 3 Extended. The thickness of each layer is set as 0.08mm and the printing speed as 35mm/s for high precision. Mounting parts are printed by PLA on same machine. 
+The soft pneumatic finger is 3D printed by 95A hardness TPU on Ultimaker 3 Extended. The thickness of each layer is set as 0.08mm and the printing speed as 35mm/s for high precision. Mounting parts are printed by PLA on same machine. And introduction of TPU could be found here(http://www.huntsman.com/polyurethanes/Media%20Library/global/files/guide_tpu.pdf).
 ## Software Setup and tests:
 The following steps will help to run the software :
 #### 1.Initiate the soft gripper control:
