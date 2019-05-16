@@ -10,7 +10,7 @@ by in palm camera and Apriltags; UR10 robot arm control on Moveit.
 3. USB camera
 4. Arduino
 5. DAC module
-6. Two SMC ITV 0030 series electro-pneumatic regulator
+6. Two SMC ITV 0030 series electro-pneumatic regulators
 #### Software:
 1. [ROS Kinetic](http://wiki.ros.org/kinetic)
 2. [ROS UR modern driver](https://github.com/ros-industrial/ur_modern_driver)
