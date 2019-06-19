@@ -1,0 +1,23 @@
+####################1.setup arduino 
+###site:http://wiki.ros.org/rosserial_arduino/Tutorials/Blink
+$ roscore
+$ rosrun rosserial_python serial_node.py /dev/ttyACM0 (pin9,5)
+$ rostopic pub soft std_msgs/UInt16 0 --once(or 1 or 2)
+//rostopic pub soft std_msgs/Int16 0 --once
+#####################2.setup camera
+$ roslaunch usb_cam usb_cam-test.launch //camera image
+$ ROS_NAMESPACE=usb_cam rosrun image_proc image_proc
+$ roslaunch apriltags_ros example.launch 
+$ rostopic echo /tag_detections  //detection data
+
+#####################3.setup UR10
+####check connection: ping 192.168.1.10
+$ roslaunch ur_modern_driver ur10_bringup.launch robot_ip:=192.168.1.10 [reverse_port:=REVERSE_PORT]
+$ roslaunch ur10_moveit_config ur10_moveit_planning_execution.launch limited:=true   
+$ roslaunch ur10_moveit_config moveit_rviz.launch config:=true  
+$ rosrun a4_paper_turning soft_gripper_frame.py
+$ rosrun a4_paper_turning page_turning_2D_aug_1_Jimmy_version2.py
+
+//rostopic pub move a4_paper_turning/manual_move --once '[0.1]' '[0.1]' '[0.1]' 
+
+
