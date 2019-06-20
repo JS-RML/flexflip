@@ -3,7 +3,7 @@ ROS package: Page turning by soft robotics gripper with UR10 robot arm. This pro
 soft robtoics gripper. The code has 3 major parts: soft gripper actuation by Arduino and electro-pneumatic regulator; object detection
 by in palm camera and Apriltags; UR10 robot arm control on Moveit.
 
-Theoratical Matlab simulation codes are in [DFF_Manipulation](https://github.com/HKUST-RML/flexflip/tree/master/DFF-Manipulation-master) folder.
+Theoratical Matlab simulation codes are in [DFF-Manipulation-master](https://github.com/HKUST-RML/flexflip/tree/master/DFF-Manipulation-master) folder.
 
 ## Prerequisites:
 #### Hardware:
