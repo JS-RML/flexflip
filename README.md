@@ -46,7 +46,7 @@ The following figure shows the setup on sight. Our gripper is, mounted on UR10, 
 </p>
 
 ## Software Prerequisites:
-1. **Ubuntu and ROS**:Our system is devevloped in Ubuntu 16.04, ROS Kinetic.[ROS Kinetic](http://wiki.ros.org/kinetic).
+1. **Ubuntu and ROS**:Our system is devevloped in Ubuntu 16.04, [ROS Kinetic](http://wiki.ros.org/kinetic).
 2. **Robot Arm Control**: [ROS UR modern driver](https://github.com/ros-industrial/ur_modern_driver) and [ROS universal_robot package](http://wiki.ros.org/universal_robot) are used to control UR10 with the IK solvers provided by  [MoveIt!](https://moveit.ros.org/).
 3. **Visual Perception**: Monocular Camera drived by [ROS package usb_cam ](http://wiki.ros.org/usb_cam) provides transform between the object and center of camera [ROS package apriltags_ros](http://wiki.ros.org/apriltags_ros). The pregrasping pose is set based on this perception information.
 4. **End Effector Control**: We use [ROS package rosserial_arduino](http://wiki.ros.org/rosserial_arduino/Tutorials/Arduino%20IDE%20Setup#Installing_the_Software) to setup the communication between ROS and Arduino board. DAC module connect with Arduino will convert PWM signal to analog for pneumatic pressure control.
