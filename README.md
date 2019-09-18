@@ -62,7 +62,7 @@ run rosserial_python package(serial_node may vary):
 ```
 rosrun rosserial_python serial_node.py /dev/ttyACM0
 ```
-test the gripper
+test the gripper:
 ```
 rostopic pub soft std_msgs/UInt16 1 --once
 ```
@@ -84,9 +84,9 @@ display tag info:
 rostopic echo /tag_detections
 ```
 #### 3.Setup univeral robot control:
-launch robot driver(IP address maybe different):
+launch robot driver:
 ```
-roslaunch ur_modern_driver ur10_bringup.launch robot_ip:=192.168.1.10 [reverse_port:=REVERSE_PORT]
+roslaunch ur_modern_driver ur10_bringup.launch robot_ip:=your.robot.ip [reverse_port:=REVERSE_PORT]
 ```
 launch UR10 planning execution:
 ```
@@ -104,6 +104,6 @@ run python code:
 ```
 rosrun soft_gripper_page_turning page_turning_1D_aug_demo.py
 ```
-** Note: A shell script [paper_turning.sh](https://github.com/HKUST-RML/flexflip/blob/master/paper_turning.sh) is written to setup the environment automatically at home directory.**
+**Note: A shell script [paper_turning.sh](https://github.com/HKUST-RML/flexflip/blob/master/paper_turning.sh) is written to setup the environment automatically at home directory.**
 ## Maintainers:
 Chunli JIANG (cjiangab@ust.hk)  Abdullah NAZIR(sanazir@connect.ust.hk) 
