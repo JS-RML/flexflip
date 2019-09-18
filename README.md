@@ -21,6 +21,8 @@ Matlab simulation codes are in [DFF-Manipulation-master](https://github.com/HKUS
 5. [ROS apriltags_ros package](http://wiki.ros.org/apriltags_ros)
 6. [MoveIt!](https://moveit.ros.org/)
 7. [ROS rosserial_arduino package](http://wiki.ros.org/rosserial_arduino/Tutorials/Arduino%20IDE%20Setup#Installing_the_Software)
+#### Related paper:
+[Dynamic Flex-and-Flip Manipulation of Linear Deformable Objects]
 ## Haraware preparation:
 Stl files and descriptive drawings for manufacturing are in [mesh folder](https://github.com/HKUST-RML/soft_gripper_page_turning/tree/master/mesh).
 ![alt text](https://github.com/HKUST-RML/soft_gripper_page_turning/blob/master/mesh/finger_proto_1_finalized.PNG)
