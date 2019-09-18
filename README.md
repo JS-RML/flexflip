@@ -7,11 +7,13 @@
 
 **Video**: [video1](https://drive.google.com/file/d/1a20tH0woEcDpF48ZbNs7ktDp6As-niw0/view)
 
-**Paper**: [Dynamic Flex-and-Flip Manipulation of Deformable Linear Objects](https://drive.google.com/file/d/1-5swA3RHVHJiFSBKWW0xD8tLXGSHrgOR/view?usp=sharing)
-
 **Authors**: Chunli Jiang, Abdullah Nazir, Ghasem Abbasnejad and Jungwon Seo
 
 **Contributor**: Jiming Ren
+
+**Related Paper**: [Dynamic Flex-and-Flip Manipulation of Deformable Linear Objects](https://drive.google.com/file/d/1-5swA3RHVHJiFSBKWW0xD8tLXGSHrgOR/view?usp=sharing)
+
+*If you use flexflip or its sub-modules for your reasearch or application, please start this repo and cite our related paper.*
 
 ## Prerequisites:
 #### Hardware:
@@ -96,5 +98,5 @@ rosrun soft_gripper_page_turning page_turning_1D_aug_demo.py
 ```
 ## Note:
 A shell script paper_turning.sh is written to set up the environment.
-## Authors
-Chunli JIANG (cjiangab@ust.hk)  Abdullah NAZIR(sanazir@connect.ust.hk) Jiming REN(jrenaf@connect.ust.hk)
+## Maintainors:
+Chunli JIANG (cjiangab@ust.hk)  Abdullah NAZIR(sanazir@connect.ust.hk) 
