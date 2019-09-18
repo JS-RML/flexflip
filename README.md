@@ -12,7 +12,7 @@
 
 **Contributor**: Jiming Ren
 
-**Related Paper**: [Dynamic Flex-and-Flip Manipulation of Deformable Linear Objects](https://drive.google.com/file/d/1-5swA3RHVHJiFSBKWW0xD8tLXGSHrgOR/view?usp=sharing) (To be presented in IROS2019 Macau)
+**Related Paper**: [Dynamic Flex-and-Flip Manipulation of Deformable Linear Objects](https://drive.google.com/file/d/1-5swA3RHVHJiFSBKWW0xD8tLXGSHrgOR/view?usp=sharing) (Contributed Paper Accepted by IROS2019 Macau)
 
 *If you use flexflip or its sub-modules for your reasearch or application, please star this repo and cite our related paper.*
 
