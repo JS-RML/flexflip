@@ -11,37 +11,32 @@
 
 **Contributor**: Jiming Ren
 
-**Related Paper**: [Dynamic Flex-and-Flip Manipulation of Deformable Linear Objects](https://drive.google.com/file/d/1-5swA3RHVHJiFSBKWW0xD8tLXGSHrgOR/view?usp=sharing)
+**Related Paper**: [Dynamic Flex-and-Flip Manipulation of Deformable Linear Objects](https://drive.google.com/file/d/1-5swA3RHVHJiFSBKWW0xD8tLXGSHrgOR/view?usp=sharing) (To be presented in IROS2019 Macau)
 
-*If you use flexflip or its sub-modules for your reasearch or application, please start this repo and cite our related paper.*
+*If you use flexflip or its sub-modules for your reasearch or application, please star this repo and cite our related paper.*
 
-## Prerequisites:
-#### Hardware:
-1. Universal Robot UR10
-2. 3D printed soft gripper
-3. USB camera
-4. Arduino
-5. DAC module
-6. Two SMC ITV 0030 series electro-pneumatic regulators
-#### Software:
-1. [ROS Kinetic](http://wiki.ros.org/kinetic)
-2. [ROS UR modern driver](https://github.com/ros-industrial/ur_modern_driver)
-3. [ROS universal_robot package](http://wiki.ros.org/universal_robot)
-4. [ROS usb_cam package](http://wiki.ros.org/usb_cam)
-5. [ROS apriltags_ros package](http://wiki.ros.org/apriltags_ros)
-6. [MoveIt!](https://moveit.ros.org/)
-7. [ROS rosserial_arduino package](http://wiki.ros.org/rosserial_arduino/Tutorials/Arduino%20IDE%20Setup#Installing_the_Software)
-
-## Haraware preparation:
-Stl files and descriptive drawings for manufacturing are in [mesh folder](https://github.com/HKUST-RML/soft_gripper_page_turning/tree/master/mesh).
+## Hardware:
+The figure shows the setup on sight. Our gripper is, mounted on UR10, is to be controlled to turn thepaper strip, localized autonomously through AprilTag. Range of the initialconfigurations of the hand to be tested in our page-turning experiments. And the following iterms are adopted for our useage:
+- Robot arm: Universal Robot UR10
+- 3D printed soft gripper: Stl files and descriptive drawings for manufacturing are in [mesh folder](https://github.com/HKUST-RML/soft_gripper_page_turning/tree/master/mesh). The soft pneumatic finger is 3D printed by 95A hardness TPU on Ultimaker 3 Extended. Thickness of each layer is set as 0.08mm and the printing speed as 35mm/s for high precision. Mounting parts are printed by PLA on the same machine. And introduction of TPU could be found at [here](http://www.huntsman.com/polyurethanes/Media%20Library/global/files/guide_tpu.pdf).
+- USB camera
+- Arduino
+- DAC module
+- [Two SMC ITV 0030 series electro-pneumatic regulators](https://www.smcpneumatics.com/ITV0030-3ML-Q.html)
 
 <p align="center">
 <img src="https://github.com/HKUST-RML/flexflip/blob/master/pictures/hardware_settings.png" height="400">
 </p>
 
+## Software:
+- [ROS Kinetic](http://wiki.ros.org/kinetic)
+- [ROS UR modern driver](https://github.com/ros-industrial/ur_modern_driver)
+- [ROS universal_robot package](http://wiki.ros.org/universal_robot)
+- [ROS usb_cam package](http://wiki.ros.org/usb_cam)
+- [ROS apriltags_ros package](http://wiki.ros.org/apriltags_ros)
+- [MoveIt!](https://moveit.ros.org/)
+- [ROS rosserial_arduino package](http://wiki.ros.org/rosserial_arduino/Tutorials/Arduino%20IDE%20Setup#Installing_the_Software)
 
-The soft pneumatic finger is 3D printed by 95A hardness TPU on Ultimaker 3 Extended. The thickness of each layer is set as 0.08mm and the printing speed as 35mm/s for high precision. Mounting parts are printed by PLA on same machine. And introduction of TPU could be found at [here](http://www.huntsman.com/polyurethanes/Media%20Library/global/files/guide_tpu.pdf).
-## Software setup and tests:
 The following steps will help to run the software :
 #### 1.Initiate the soft gripper control:
 start a ROS core:
