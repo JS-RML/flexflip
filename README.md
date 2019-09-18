@@ -1,12 +1,12 @@
 # flexflip
-**flexflip**: The project demonstrates an advanced dynamic manipulation strategy called **flex-and-flip**. The technique is targeted at flexible, thin objects and applied to obtaining secure, pinch grasps on them. Initially, the flexible object (a strip of paper) is placed on a tabletop. The robotic hand approaches and deforms the object (the **“flex”** phase of the operation), and then the deformed object is tucked into the gap between the fingers (the **“flip”** phase). Finally, a pinch grasp is obtained and the page turning task (or other secondary manipulation tasks) can be performed.
+**flexflip**: The project demonstrates an advanced dynamic manipulation strategy called **flex-and-flip**. The technique is targeted at flexible, thin objects and applied to obtaining secure, pinch grasps on them. Initially, the flexible object (a strip of paper) is placed on a tabletop. The robotic hand approaches and deforms the object (the **“flex”** phase of the operation), and then the deformed object is tucked into the gap between the fingers (the **“flip”** phase). Finally, a pinch grasp is obtained and the page turning task (or other secondary manipulation tasks) can be performed. The technqiue is 
 
 <p align="center">
   <img height="160" src="https://github.com/HKUST-RML/flexflip/blob/master/pictures/Picture1_complete.jpg">
 </p>
 
-Matlab simulation codes are in [DFF-Manipulation-master](https://github.com/HKUST-RML/flexflip/tree/master/DFF-Manipulation-master) folder.
-
+**Video**: video1
+**Paper**: 
 ## Prerequisites:
 #### Hardware:
 1. Universal Robot UR10
@@ -27,9 +27,12 @@ Matlab simulation codes are in [DFF-Manipulation-master](https://github.com/HKUS
 ## Haraware preparation:
 Stl files and descriptive drawings for manufacturing are in [mesh folder](https://github.com/HKUST-RML/soft_gripper_page_turning/tree/master/mesh).
 ![alt text](https://github.com/HKUST-RML/soft_gripper_page_turning/blob/master/mesh/finger_proto_1_finalized.PNG)
+
+<p align="center">
 <img src="https://github.com/HKUST-RML/soft_gripper_page_turning/blob/master/mesh/Descriptive_drawing.PNG" height="160">
 <img src="https://github.com/HKUST-RML/soft_gripper_page_turning/blob/master/mesh/gripper_on_ur10.jpg" height="160">
 <img src="https://github.com/HKUST-RML/soft_gripper_page_turning/blob/master/mesh/1D_scene.jpg" height="160">
+</p>
 
 The soft pneumatic finger is 3D printed by 95A hardness TPU on Ultimaker 3 Extended. The thickness of each layer is set as 0.08mm and the printing speed as 35mm/s for high precision. Mounting parts are printed by PLA on same machine. And introduction of TPU could be found at [here](http://www.huntsman.com/polyurethanes/Media%20Library/global/files/guide_tpu.pdf).
 ## Software setup and tests:
