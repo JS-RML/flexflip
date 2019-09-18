@@ -83,7 +83,6 @@ run python code:
 rosrun soft_gripper_page_turning page_turning_1D_aug_demo.py
 ```
 ## Note:
-A shell script paper_turning.sh is written to set up the environment. However, the last python code has to be run independently.
-
+A shell script paper_turning.sh is written to set up the environment.
 ## Authors
 Chunli JIANG (cjiangab@ust.hk)  Abdullah NAZIR(sanazir@connect.ust.hk) Jiming REN(jrenaf@connect.ust.hk)
