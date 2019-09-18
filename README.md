@@ -15,7 +15,20 @@
 
 *If you use flexflip or its sub-modules for your reasearch or application, please star this repo and cite our related paper.*
 
-## Hardware:
+## Theory:
+
+**Modeling and Manipulating a Linear Deformable Object** 
+The directory `/modeling` contains 1) a `MATLAB` function to generate minimum bending energy curves given the $(x,y)$-coordinates of the right end-point. The left end-point is assumed clamped at the origin. The slope at the left end is set to zero, whereas the right slope is left free. This can be modified in-code.
+2) a `MATLAB` scripts that considers a set of feasible right endpoint locations and obtains the minimum bending energy curve for each. Simultaneously, the magnitude of total surface energy as well as the minimum coefficient of friction required to maintain contact \#2 is computed. The following figure was generated using this script.
+
+![figure3](media/fig3)
+
+
+Knowledge of variation of bending energy and the minimum coefficient of friction can help in planning the path of contact \#2 such as shown in the following figure.
+
+![figure8](media/fig8)
+
+## Hardware Setup:
 The figure shows the setup on sight. Our gripper is, mounted on UR10, is to be controlled to turn thepaper strip, localized autonomously through AprilTag. Range of the initialconfigurations of the hand to be tested in our page-turning experiments. And the following iterms are adopted for our useage:
 - Robot arm: Universal Robot UR10
 - 3D printed soft gripper: Stl files and descriptive drawings for manufacturing are in [mesh folder](https://github.com/HKUST-RML/soft_gripper_page_turning/tree/master/mesh). The soft pneumatic finger is 3D printed by 95A hardness TPU on Ultimaker 3 Extended. Thickness of each layer is set as 0.08mm and the printing speed as 35mm/s for high precision. Mounting parts are printed by PLA on the same machine. And introduction of TPU could be found at [here](http://www.huntsman.com/polyurethanes/Media%20Library/global/files/guide_tpu.pdf).
@@ -28,7 +41,8 @@ The figure shows the setup on sight. Our gripper is, mounted on UR10, is to be c
 <img src="https://github.com/HKUST-RML/flexflip/blob/master/pictures/hardware_settings.png" height="400">
 </p>
 
-## Software:
+## Software Prerequisites:
+
 - [ROS Kinetic](http://wiki.ros.org/kinetic)
 - [ROS UR modern driver](https://github.com/ros-industrial/ur_modern_driver)
 - [ROS universal_robot package](http://wiki.ros.org/universal_robot)
@@ -37,6 +51,7 @@ The figure shows the setup on sight. Our gripper is, mounted on UR10, is to be c
 - [MoveIt!](https://moveit.ros.org/)
 - [ROS rosserial_arduino package](http://wiki.ros.org/rosserial_arduino/Tutorials/Arduino%20IDE%20Setup#Installing_the_Software)
 
+## Experiments:
 The following steps will help to run the software :
 #### 1.Initiate the soft gripper control:
 start a ROS core:
@@ -89,7 +104,6 @@ run python code:
 ```
 rosrun soft_gripper_page_turning page_turning_1D_aug_demo.py
 ```
-## Note:
-A shell script paper_turning.sh is written to set up the environment.
-## Maintainrs:
+** Note: A shell script [paper_turning.sh](https://github.com/HKUST-RML/flexflip/blob/master/paper_turning.sh) is written to setup the environment automatically at home directory.**
+## Maintainers:
 Chunli JIANG (cjiangab@ust.hk)  Abdullah NAZIR(sanazir@connect.ust.hk) 
