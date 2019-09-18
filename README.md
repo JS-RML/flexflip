@@ -18,18 +18,18 @@
 ## Theory:
 
 **Modeling and Manipulating a Linear Deformable Object** 
-The directory `/modeling` contains 1) a `MATLAB` function to generate minimum bending energy curves given the $(x,y)$-coordinates of the right end-point. The left end-point is assumed clamped at the origin. The slope at the left end is set to zero, whereas the right slope is left free. This can be modified in-code.
+The directory `DFF-Manipulation-master/modeling` contains 1) a `MATLAB` function to generate minimum bending energy curves given the $(x,y)$-coordinates of the right end-point. The left end-point is assumed clamped at the origin. The slope at the left end is set to zero, whereas the right slope is left free. This can be modified in-code.
 2) a `MATLAB` scripts that considers a set of feasible right endpoint locations and obtains the minimum bending energy curve for each. Simultaneously, the magnitude of total surface energy as well as the minimum coefficient of friction required to maintain contact \#2 is computed. The following figure was generated using this script.
 
 <p align="center">
-  <img height="220" src="https://github.com/HKUST-RML/flexflip/blob/master/DFF-Manipulation-master/media/fig3">
+  <img height="500" src="https://github.com/HKUST-RML/flexflip/blob/master/DFF-Manipulation-master/media/fig3">
 </p>
 
 
 Knowledge of variation of bending energy and the minimum coefficient of friction can help in planning the path of contact \#2 such as shown in the following figure.
 
 <p align="center">
-  <img height="220" src="https://github.com/HKUST-RML/flexflip/blob/master/DFF-Manipulation-master/media/fig8">
+  <img height="500" src="https://github.com/HKUST-RML/flexflip/blob/master/DFF-Manipulation-master/media/fig8">
 </p>
 
 ## Hardware Setup:
