@@ -54,53 +54,35 @@ The following figure shows the setup on sight. Our gripper is, mounted on UR10, 
 ## Experiments:
 The following steps will help to test and debug :
 #### 1.Initiate the soft gripper control:
-start a ROS core:
+start a ROS core and setup connection with Arduino:
 ```
 roscore
-```
-run rosserial_python package(serial_node may vary):
-```
-rosrun rosserial_python serial_node.py /dev/ttyACM0
+rosrun rosserial_python serial_node.py /dev/you_serial_node
 ```
 test the gripper:
 ```
 rostopic pub soft std_msgs/UInt16 1 --once
 ```
 #### 2.Setup apriltags detection:
-run usb_cam package:
+run apriltag with usb_cam:
 ```
 roslaunch usb_cam usb_cam-test.launch
-```
-link to image_proc:
-```
 ROS_NAMESPACE=usb_cam rosrun image_proc image_proc
-```
-launch apriltags detection:
-```
 roslaunch apriltags_ros example.launch 
-```
-display tag info:
-```
 rostopic echo /tag_detections
 ```
 #### 3.Setup univeral robot control:
-launch robot driver:
+launch robot driver and moveit planner:
 ```
 roslaunch ur_modern_driver ur10_bringup.launch robot_ip:=your.robot.ip [reverse_port:=REVERSE_PORT]
-```
-launch UR10 planning execution:
-```
 roslaunch ur10_moveit_config ur10_moveit_planning_execution.launch limited:=true 
-```
-run MoveIt!:
-```
 roslaunch ur10_moveit_config moveit_rviz.launch config:=true  
 ```
 subsrcibe to the gripper frame:
 ```
 rosrun soft_gripper_page_turning soft_gripper_frame.py
 ```
-run python code:
+run python script:
 ```
 rosrun soft_gripper_page_turning page_turning_1D_aug_demo.py
 ```
