@@ -3,6 +3,7 @@
 
 <p align="center">
   <img height="160" src="https://github.com/HKUST-RML/flexflip/blob/master/pictures/Picture1_complete.jpg">
+  <img height="160" src="https://github.com/HKUST-RML/flexflip/blob/master/pictures/1D_flexflip.gif.gif">
 </p>
 
 **Video**: [video1](https://drive.google.com/file/d/1a20tH0woEcDpF48ZbNs7ktDp6As-niw0/view)
