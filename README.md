@@ -1,5 +1,5 @@
 # flexflip
-**flexflip**: The project demonstrates an advanced dynamic manipulation strategy called **flex-and-flip**. The technique is targeted at flexible, thin objects and applied to obtaining secure, pinch grasps on them. Initially, the flexible object (a strip of paper) is placed on a tabletop. The robotic hand approaches and deforms the object (the **“flex”** phase of the operation), and then the deformed object is tucked into the gap between the fingers (the **“flip”** phase). Finally, a pinch grasp is obtained and the page turning task (or other secondary manipulation tasks) can be performed. The technqiue is 
+**flexflip**: The project demonstrates an advanced dynamic manipulation strategy called **flex-and-flip**. The technique is targeted at flexible, thin objects and applied to obtaining secure, pinch grasps on them. Initially, the flexible object (a strip of paper) is placed on a tabletop. The robotic hand approaches and deforms the object (the **“flex”** phase of the operation), and then the deformed object is tucked into the gap between the fingers (the **“flip”** phase). Finally, a pinch grasp is obtained and the page turning task (or other secondary manipulation tasks) can be performed. The technqiue could be further extented to turning  planar deformable objects and back-to-back page turning.
 
 <p align="center">
   <img height="160" src="https://github.com/HKUST-RML/flexflip/blob/master/pictures/Picture1_complete.jpg">
@@ -10,6 +10,7 @@
 **Paper**: [Dynamic Flex-and-Flip Manipulation of Deformable Linear Objects](https://drive.google.com/file/d/1-5swA3RHVHJiFSBKWW0xD8tLXGSHrgOR/view?usp=sharing)
 
 **Authors**: Chunli Jiang, Abdullah Nazir, Ghasem Abbasnejad and Jungwon Seo
+
 **Contributor**: Jiming Ren
 
 ## Prerequisites:
