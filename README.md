@@ -22,7 +22,7 @@ The directory `DFF-Manipulation-master/modeling` contains 1) a `MATLAB` function
 2) a `MATLAB` scripts that considers a set of feasible right endpoint locations and obtains the minimum bending energy curve for each. Simultaneously, the magnitude of total surface energy as well as the minimum coefficient of friction required to maintain contact \#2 is computed. The following figure was generated using this script.
 
 <p align="center">
-  <img height="500" src="https://github.com/HKUST-RML/flexflip/blob/master/DFF-Manipulation-master/media/fig3">
+  <img src="https://github.com/HKUST-RML/flexflip/blob/master/DFF-Manipulation-master/media/fig3">
 </p>
 
 
@@ -52,7 +52,7 @@ The following figure shows the setup on sight. Our gripper is, mounted on UR10, 
 4. **End Effector Control**: We use [ROS package rosserial_arduino] (http://wiki.ros.org/rosserial_arduino/Tutorials/Arduino%20IDE%20Setup#Installing_the_Software) to setup the communication between ROS and Arduino board. DAC module connect with Arduino will convert PWM signal to analog for pneumatic pressure control.
 
 ## Experiments:
-The following steps will help to run the software :
+The following steps will help to test and debug :
 #### 1.Initiate the soft gripper control:
 start a ROS core:
 ```
