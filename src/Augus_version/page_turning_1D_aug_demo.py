@@ -58,9 +58,6 @@ init_y = 0.0
 init_z = 0.0
 
 
-
-
-
 is_arrive = 0
 is_home = 0
 gripper_stat = 0
@@ -78,11 +75,6 @@ init_angle=0.0
 print "============ Waiting for RVIZ..."
 rospy.sleep(5)
 print "============ Starting tutorial "
-
-
-
-##def status_callback(qr_status):
-##  is_qr = qr_status.status.data
 
 
 
@@ -204,21 +196,6 @@ def move_waypoints(px, py, pz, vel):
   scaled_traj = scale_trajectory_speed(plan, vel)
   group.execute(scaled_traj)       
 
-#####################################################################
-def move_joint(theta0, theta1, theta2, theta3, theta4, theta5, vel):
-  group.clear_pose_targets()
-  group_variable_values = group.get_current_joint_values()
-  group_variable_values[0] += theta0
-  group_variable_values[1] += theta1
-  group_variable_values[2] += theta2
-  group_variable_values[3] += theta3
-  group_variable_values[4] += theta4
-  group_variable_values[5] += theta5
-  group.set_joint_value_target(group_variable_values)
-  plan = group.plan()
-  print "============ Waiting while RVIZ displays plan2..."
-  scaled_traj2 = scale_trajectory_speed(plan, vel)
-  group.execute(scaled_traj2)
 
 #####################################################################
 def move_target(x, y, z, ox, oy, oz, ow, vel):
@@ -298,10 +275,10 @@ def quat2eular(qx, qy, qz, qw):
   euler = tf.transformations.euler_from_quaternion(quaternion)
   return euler
 
-#quaternion_from_euler(1, 2, 3, 'ryxz')
-###################################################################
-#^^^^^^^^^^^^^start the control logic here ^^^^^^^^^^^^^^^^^^^^^^^^^
+
 ####################################################
+####################################################
+#x_value,z_value,theta_value corresponding to the local frame presented in the paper (Dynamic Flex-and-Flip Manipulation of Deformable Linear Objects)
 def main_logic(x_value,z_value,theta_value,i_test):
   print "==========start1"
   
