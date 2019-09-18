@@ -5,8 +5,13 @@
   <img height="160" src="https://github.com/HKUST-RML/flexflip/blob/master/pictures/Picture1_complete.jpg">
 </p>
 
-**Video**: video1
-**Paper**: 
+**Video**: [video1](https://drive.google.com/file/d/1a20tH0woEcDpF48ZbNs7ktDp6As-niw0/view)
+
+**Paper**: [Dynamic Flex-and-Flip Manipulation of Deformable Linear Objects](https://drive.google.com/file/d/1-5swA3RHVHJiFSBKWW0xD8tLXGSHrgOR/view?usp=sharing)
+
+**Authors**: Chunli Jiang, Abdullah Nazir, Ghasem Abbasnejad and Jungwon Seo
+**Contributor**: Jiming Ren
+
 ## Prerequisites:
 #### Hardware:
 1. Universal Robot UR10
