@@ -1,7 +1,7 @@
 # flexflip
 flexflip: Dynamic flex-and-flip manipulation by soft robotic grippers on UR10 robot arm. The project demonstrates an advanced dynamic manipulation strategy for deformable linear objects by 3D printed underactuated soft robtoic grippers. Initially, the flexible object (a strip of paper) is placed on a tabletop. The robotic hand approaches and deforms the object (the “flex” phase of the operation), and then the deformed object is tucked into the gap between the fingers (the “flip” phase). Finally, a pinch grasp is obtained and the page turning task (or other secondary manipulation tasks) can be performed.
 
-<img src="https://github.com/HKUST-RML/flexflip/blob/master/pictures/Picture1_complete.jpg" height="205">
+![alt text]<img src="https://github.com/HKUST-RML/flexflip/blob/master/pictures/Picture1_complete.jpg" height="205">
 
 Matlab simulation codes are in [DFF-Manipulation-master](https://github.com/HKUST-RML/flexflip/tree/master/DFF-Manipulation-master) folder.
 
