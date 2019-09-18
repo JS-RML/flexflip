@@ -7,7 +7,7 @@
 
 **Video**: [video1](https://drive.google.com/file/d/1a20tH0woEcDpF48ZbNs7ktDp6As-niw0/view)
 
-**Authors**: Chunli Jiang, Abdullah Nazir, Ghasem Abbasnejad and [Jungwon Seo ](http://junseo.people.ust.hk/)
+**Authors**: Chunli Jiang, Abdullah Nazir, Ghasem Abbasnejad and [Jungwon Seo ](http://junseo.people.ust.hk/) (All members are from HKUST Robotic Manipulation Lab.)
 
 **Contributor**: Jiming Ren
 
@@ -42,18 +42,14 @@ The following figure shows the setup on sight. Our gripper is, mounted on UR10, 
 - [Two SMC ITV 0030 series electro-pneumatic regulators](https://www.smcpneumatics.com/ITV0030-3ML-Q.html)
 
 <p align="center">
-<img src="https://github.com/HKUST-RML/flexflip/blob/master/pictures/hardware_settings.png" height="400">
+<img src="https://github.com/HKUST-RML/flexflip/blob/master/pictures/hardware_settings.png" height="300">
 </p>
 
 ## Software Prerequisites:
-
-- [ROS Kinetic](http://wiki.ros.org/kinetic)
-- [ROS UR modern driver](https://github.com/ros-industrial/ur_modern_driver)
-- [ROS universal_robot package](http://wiki.ros.org/universal_robot)
-- [ROS usb_cam package](http://wiki.ros.org/usb_cam)
-- [ROS apriltags_ros package](http://wiki.ros.org/apriltags_ros)
-- [MoveIt!](https://moveit.ros.org/)
-- [ROS rosserial_arduino package](http://wiki.ros.org/rosserial_arduino/Tutorials/Arduino%20IDE%20Setup#Installing_the_Software)
+1. **Ubuntu and ROS**:Our system is devevloped in Ubuntu 16.04, ROS Kinetic.[ROS Kinetic](http://wiki.ros.org/kinetic).
+2. **Robot Arm Control**: [ROS UR modern driver](https://github.com/ros-industrial/ur_modern_driver) and [ROS universal_robot package](http://wiki.ros.org/universal_robot) are used to control UR10 with the IK solvers provided by  [MoveIt!](https://moveit.ros.org/).
+3. **Visual Perception**: Monocular Camera drived by [ROS package usb_cam ](http://wiki.ros.org/usb_cam) provides transform between the object and center of camera [ROS package apriltags_ros](http://wiki.ros.org/apriltags_ros). The pregrasping pose is set based on this perception information.
+4. **End Effector Control**: We use [ROS package rosserial_arduino] (http://wiki.ros.org/rosserial_arduino/Tutorials/Arduino%20IDE%20Setup#Installing_the_Software) to setup the communication between ROS and Arduino board. DAC module connect with Arduino will convert PWM signal to analog for pneumatic pressure control.
 
 ## Experiments:
 The following steps will help to run the software :
