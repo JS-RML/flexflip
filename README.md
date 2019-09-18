@@ -1,9 +1,9 @@
 # flexflip
-ROS package: Page turning by soft robotics gripper with UR10 robot arm. This project is to turn paper or paper strip by 3D printed 
-soft robtoics gripper. The code has 3 major parts: soft gripper actuation by Arduino and electro-pneumatic regulator; object detection
+flexflip: Dynamic flex-and-flip manipulation by soft robotic grippers on UR10 robot arm. This project is to turn paper or paper strip by 3D printed 
+soft robtoics gripper. The code has 3 major parts: soft gripper controlled by Arduino and actuated by electro-pneumatic regulator; object detection
 by in palm camera and Apriltags; UR10 robot arm control on Moveit.
 
-Theoratical Matlab simulation codes are in [DFF-Manipulation-master](https://github.com/HKUST-RML/flexflip/tree/master/DFF-Manipulation-master) folder.
+Matlab simulation codes are in [DFF-Manipulation-master](https://github.com/HKUST-RML/flexflip/tree/master/DFF-Manipulation-master) folder.
 
 ## Prerequisites:
 #### Hardware:
