@@ -36,7 +36,7 @@
 Stl files and descriptive drawings for manufacturing are in [mesh folder](https://github.com/HKUST-RML/soft_gripper_page_turning/tree/master/mesh).
 
 <p align="center">
-<img src="https://github.com/HKUST-RML/soft_gripper_page_turning/blob/master/mesh/finger_proto_1_finalized.PNG" height="160">
+<img src="https://github.com/HKUST-RML/soft_gripper_page_turning/blob/master/mesh/finger_proto_1_finalized.PNG" height="400">
 </p>
 <p align="center">
 <img src="https://github.com/HKUST-RML/soft_gripper_page_turning/blob/master/mesh/Descriptive_drawing.PNG" height="160">
