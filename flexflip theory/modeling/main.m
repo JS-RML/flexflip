@@ -1,9 +1,9 @@
 %{
 This script plots minimum bending energy curves whose left end is clamped,
-while the right end is varied within a triangular region. The corresponding 
-flexure energy distribution, and the minimum coefficient of friction
-required (at the right end of the curve) to maintain quasi-statibility is
-also computed.
+while the right end is varied within a triangular region of feasible end-points.
+The corresponding flexure energy distribution, and the minimum coefficient of
+friction required (at the right end of the curve) to maintain quasi-statibility
+is also computed.
 
 Sep. 24, 2019
 %}
@@ -46,7 +46,7 @@ Tip_normal_matrix_V = zeros(steps);
 % ... but only a triangular region for end-points is of interest to us
 ones_lt_flipped = flip(tril(ones(steps),2));
 ut_idxes = find(ones_lt_flipped>0);
- 
+
 curves_figure = figure(1);
 curves_axis = gca;
 
@@ -55,12 +55,12 @@ for xidx = ut_idxes.'
 
         curve_props.endPoint(1) = X(xidx);
         curve_props.endPoint(2) = Y(xidx);
-        
+
         [xc,yc,var_theta,lambda] = generateBendingCurve(var_s, curve_props);
-       
+
         % compute total flexure energy
         U_flex_matrix(xidx) = computeFlexureEnergy(var_s, var_theta);
-        
+
         % compute minimum coefficient of friction
         CoF_matrix(xidx) = computeCoF(lambda, var_theta);
 
@@ -72,5 +72,3 @@ end
 
 %plot results
 plotResults(X, Y, U_flex_matrix, CoF_matrix, Tip_normal_matrix_U, Tip_normal_matrix_V, curves_axis)
-
-

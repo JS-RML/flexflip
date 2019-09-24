@@ -16,7 +16,7 @@
 
 *If you use flexflip or its sub-modules for your reasearch or application, please star this repo and cite our related paper.*
 
-## Theory:
+<!-- ## Theory:
 
 **Modeling and Manipulating a Linear Deformable Object** :
 The directory `DFF-Manipulation-master/modeling` contains 1) a `MATLAB` function to generate minimum bending energy curves given the $(x,y)$-coordinates of the right end-point. The left end-point is assumed clamped at the origin. The slope at the left end is set to zero, whereas the right slope is left free. This can be modified in-code.
@@ -31,14 +31,14 @@ Knowledge of variation of bending energy and the minimum coefficient of friction
 
 <p align="center">
   <img height="500" src="https://github.com/HKUST-RML/flexflip/blob/master/DFF-Manipulation-master/media/fig8">
-</p>
+</p> -->
 
 ## Hardware Setup:
 The following figure shows the setup on sight. Our gripper is, mounted on UR10, is to be controlled to turn the paper strip, localized autonomously through AprilTag. Range of the initialconfigurations of the hand to be tested in our page-turning experiments. And here are listed iterms we adopted for experiments:
 - Robot arm: Universal Robot UR10
-- 3D printed soft gripper: Stl files and descriptive drawings for manufacturing are in [mesh folder](https://github.com/HKUST-RML/soft_gripper_page_turning/tree/master/mesh). The soft pneumatic finger is 3D printed by 95A hardness thermoplastic polyurethane (TPU) on Ultimaker 3 Extended. Thickness of each layer is set as 0.08mm and the printing speed as 35mm/s for high precision. Mounting parts are printed by polylactide (PLA) on the same machine. 
+- 3D printed soft gripper: Stl files and descriptive drawings for manufacturing are in [mesh folder](https://github.com/HKUST-RML/soft_gripper_page_turning/tree/master/mesh). The soft pneumatic finger is 3D printed by 95A hardness thermoplastic polyurethane (TPU) on Ultimaker 3 Extended. Thickness of each layer is set as 0.08mm and the printing speed as 35mm/s for high precision. Mounting parts are printed by polylactide (PLA) on the same machine.
 - USB camera: Logitech C525 Webcam
-- Arduino: Arduino Mega 
+- Arduino: Arduino Mega
 - DAC module
 - [Two SMC ITV 0030 series electro-pneumatic regulators](https://www.smcpneumatics.com/ITV0030-3ML-Q.html)
 
@@ -69,14 +69,14 @@ run apriltag with usb_cam:
 ```
 roslaunch usb_cam usb_cam-test.launch
 ROS_NAMESPACE=usb_cam rosrun image_proc image_proc
-roslaunch apriltags_ros example.launch 
+roslaunch apriltags_ros example.launch
 rostopic echo /tag_detections
 ```
 #### 3.Setup univeral robot control:
 launch robot driver and moveit planner:
 ```
 roslaunch ur_modern_driver ur10_bringup.launch robot_ip:=your.robot.ip [reverse_port:=REVERSE_PORT]
-roslaunch ur10_moveit_config ur10_moveit_planning_execution.launch limited:=true 
+roslaunch ur10_moveit_config ur10_moveit_planning_execution.launch limited:=true
 roslaunch ur10_moveit_config moveit_rviz.launch config:=true  
 ```
 subsrcibe to the gripper frame:
@@ -92,4 +92,4 @@ rosrun soft_gripper_page_turning page_turning_1D_aug_demo.py
 ./paper_turning.sh
 ```
 ## Maintainers:
-Chunli JIANG (cjiangab@ust.hk)  Abdullah NAZIR(sanazir@connect.ust.hk) 
+Chunli JIANG (cjiangab@ust.hk)  Abdullah NAZIR(sanazir@connect.ust.hk)
