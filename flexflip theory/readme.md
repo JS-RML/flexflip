@@ -5,6 +5,8 @@
 
 ### Generate minimum bending energy curves
 
+Find a curve that minimizes total curvature along the length of the curve.
+
 In the file `generateBendingCurve.m`:
 
 * Specify initial guess as a linear combination of basis functions
