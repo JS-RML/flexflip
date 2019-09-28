@@ -69,7 +69,7 @@ Show an example curve here.
 
 
 ### (Minimum) coefficient of friction to keep the curve steady
-The Lagrange multipliers corresponding to the end-point constraints on the curve can be used to determine the minimum coefficient of friction required at the end-point to keep object in quasi-static equilibrium.  
+The Lagrange multipliers corresponding to the end-point constraints on the curve can be used to determine the minimum coefficient of friction required at the end-point to keep curve in quasi-static equilibrium.  
 
 ```Matlab
 function CoF = computeCoF(lambda, var_theta)
