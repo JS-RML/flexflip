@@ -3,17 +3,17 @@
 
 ### Generate a minimum bending energy curve
 
-First, define objective function.
+First, define the objective function. We intend to minimize the square of the curvature along the length of the curve. This is proportional to the bending energy of the curve.
 ```Matlab
 function fvalue = objectiveFunction(var_theta, var_s)
 
-    dthetads = gradient(var_theta)./gradient(var_s);
+    dthetads = gradient(var_theta)./gradient(var_s); %curvature
 
     fvalue = trapz(var_s, dthetads.^2);
 end
 ```
 
-Specify start and end-point constraint.
+Specify start and end points constraint. Note, the start point is clamped. End point tangent is unspecified.
 ```Matlab
 function [c_ineq, c_eq] = constraintFunctions(var_theta, var_s, curve_props)
   
@@ -31,7 +31,7 @@ function [c_ineq, c_eq] = constraintFunctions(var_theta, var_s, curve_props)
 end
 ```
 
-Provide initial guess.
+Provide an initial guess.
 ```Matlab
 var_theta_init = 1*ones(1, length(var_s)) +...
                  1*sin(2*pi*var_s/var_s(end)) +...
@@ -65,6 +65,8 @@ Finally, express the curve in Cartesian coordinates.
     yc = cumtrapz(var_s, sin(var_theta));   
 ```
 
+Show an example curve here.
+
 
 ### (Minimum) coefficient of friction to keep the curve steady
 The Lagrange multipliers corresponding to the end-point constraints on the curve can be used to determine the minimum coefficient of friction required at the end-point to keep object in quasi-static equilibrium.  
@@ -95,3 +97,4 @@ function CoF = computeCoF(lambda, var_theta)
 
 end
 ```
+
