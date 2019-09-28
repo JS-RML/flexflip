@@ -1,28 +1,75 @@
 # Modeling for ***flexflip***
 
 
+### Generate a minimum bending energy curve
+
+First, define objective function.
+```Matlab
+function fvalue = objectiveFunction(var_theta, var_s)
+
+    dthetads = gradient(var_theta)./gradient(var_s);
+
+    fvalue = trapz(var_s, dthetads.^2);
+end
+```
+
+Specify start and end-point constraint.
+```Matlab
+function [c_ineq, c_eq] = constraintFunctions(var_theta, var_s, curve_props)
+  
+    % start point tangent constraint
+    c_eq_1 = var_theta(1)- curve_props.startPointSlope;
 
 
-### Generate minimum bending energy curves
+    % end point position constraint
+    c_eq_3 = trapz(var_s, cos(var_theta))- curve_props.endPoint(1);
+    c_eq_4 = trapz(var_s, sin(var_theta))- curve_props.endPoint(2);
 
-Find a curve that minimizes total curvature along the length of the curve.
+    c_eq = [c_eq_1; c_eq_3; c_eq_4];
 
-In the file `generateBendingCurve.m`:
+    c_ineq = []; %no inequality constraints.
+end
+```
 
-* Specify initial guess as a linear combination of basis functions
+Provide initial guess.
 ```Matlab
 var_theta_init = 1*ones(1, length(var_s)) +...
                  1*sin(2*pi*var_s/var_s(end)) +...
                  1*cos(2*pi*var_s/var_s(end)) +...
                  1*sin(4*pi*var_s/var_s(end)) +...
-                 1*cos(4*pi*var_s/var_s(end));
+                 1*cos(4*pi*var_s/var_s(end)); %initial guess for theta(s)
+```
+
+Solve optimization problem
+```Matlab
+options = optimoptions('fmincon',...
+                       'Algorithm',...
+                       'interior-point');
+
+options.MaxFunctionEvaluations = 1e5;
+options.OptimalityTolerance= 1e-2; 
+options.StepTolerance = 1e-3;
+
+[var_theta,fval,exitflag,output,lambda,grad,hessian] = ...
+                fmincon(@(var_theta)objectiveFunction(var_theta, var_s),...
+                var_theta_init,...
+                [],[],[],[],[],[],...
+                @(var_theta)constraintFunctions(var_theta, var_s, curve_props),...
+                options);
+```
+ 
+Finally, express the curve in Cartesian coordinates.
+```Matlab
+    % return x,y coordinates of the bending curve
+    xc = cumtrapz(var_s, cos(var_theta));
+    yc = cumtrapz(var_s, sin(var_theta));   
 ```
 
 
 ### (Minimum) coefficient of friction to keep the curve steady
 The Lagrange multipliers corresponding to the end-point constraints on the curve can be used to determine the minimum coefficient of friction required at the end-point to keep object in quasi-static equilibrium.  
-```Matlab
 
+```Matlab
 function CoF = computeCoF(lambda, var_theta)
     %{
     Compute coefficient of friction at end-point of the curve in order to
