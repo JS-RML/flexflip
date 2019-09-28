@@ -2,11 +2,20 @@
 
 
 ### Generate a minimum bending energy curve
+Here, we generate a minimum bending energy curve of unit length given start and end-point constraints. 
 
 First, define the objective function. We intend to minimize the square of the curvature along the length of the curve. This is proportional to the bending energy of the curve.
 ```Matlab
 function fvalue = objectiveFunction(var_theta, var_s)
-
+    %{
+    Assume curve is expressed in arc length coordinates i.e. theta = theta(s)
+    INPUT:
+    var_theta: tangent angle along the curve
+    var_s: arc length variable along the curve
+    OUTPUT:
+    fvalue: (unfactored) bending energy of the curve
+    %}
+    
     dthetads = gradient(var_theta)./gradient(var_s); %curvature
 
     fvalue = trapz(var_s, dthetads.^2);
