@@ -1,8 +1,8 @@
 # Modeling for ***flexflip***
 
+Here, we fist generate a minimum bending energy curve of unit length subject to start and end-point constraints, and then plot a) the bending energy of the curve, and b) the minimum coefficient of friction required at the end-point to keep the curve steady in various configurations. 
 
 ### Generate a minimum bending energy curve
-Here, we generate a minimum bending energy curve of unit length given start and end-point constraints. 
 
 First, define the objective function. We intend to minimize the square of the curvature along the length of the curve. This is proportional to the bending energy of the curve.
 ```Matlab
@@ -22,7 +22,7 @@ function fvalue = objectiveFunction(var_theta, var_s)
 end
 ```
 
-Specify start and end points constraint. Note, the start point is clamped. End point tangent is unconstrained.
+Specify start and end point constraint. Note, the start point is clamped. End point tangent is unconstrained.
 ```Matlab
 function [c_ineq, c_eq] = constraintFunctions(var_theta, var_s, curve_props)
   
@@ -88,8 +88,15 @@ var_s = linspace(0, curve_props.length, intervals); % arclength variable
 [xc,yc,var_theta,lambda] = generateBendingCurve(var_s, curve_props);
 ```
 <p align="center">
-  <img src="https://github.com/nazir-ust/flexflip/blob/theory/pictures/example_bending_curve.jpg" alt="rockwalk with UR-10 robot arm"/>
+  <img src="https://github.com/nazir-ust/flexflip/blob/theory/pictures/example_bending_curve.jpg" alt="example minimum bending energy curve"/>
 </p>
+
+### Flexure Energy
+The optimal value of the objective function is the (unfactored-without rigidity constant) flexure/bending energy of the curve. Here is how it is distributed for various end-point configurations.
+<p align="center">
+  <img src="https://github.com/nazir-ust/flexflip/blob/theory/pictures/bending_energy.jpg" alt="bending energy of the curve"/>
+</p>
+
 
 
 ### (Minimum) coefficient of friction to keep the curve steady
@@ -121,4 +128,8 @@ function CoF = computeCoF(lambda, var_theta)
 
 end
 ```
+Here is how the CoF is distributed for various end-point configurations of the curve.
+<p align="center">
+  <img src="https://github.com/nazir-ust/flexflip/blob/theory/pictures/cof.jpg" alt="coefficient of friction"/>
+</p>
 
