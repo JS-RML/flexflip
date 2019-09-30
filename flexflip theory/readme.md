@@ -22,7 +22,7 @@ function fvalue = objectiveFunction(var_theta, var_s)
 end
 ```
 
-Specify start and end points constraint. Note, the start point is clamped. End point tangent is unspecified.
+Specify start and end points constraint. Note, the start point is clamped. End point tangent is unconstrained.
 ```Matlab
 function [c_ineq, c_eq] = constraintFunctions(var_theta, var_s, curve_props)
   
@@ -74,7 +74,22 @@ Finally, express the curve in Cartesian coordinates.
     yc = cumtrapz(var_s, sin(var_theta));   
 ```
 
-Show an example curve here.
+For example, the following code in `example.m` returns a bending energy curve with specified parameters
+```Matlab
+% bending curve parameters:
+curve_props.length = 1; % s
+curve_props.endPoint = [0.6, 0.3]; %[x_end, y_end]
+curve_props.startPointSlope = 0; %dy/dx @ s=0; or \theta @ s=0
+
+% create arc length variable
+intervals = 70; %for arclength discretization.
+var_s = linspace(0, curve_props.length, intervals); % arclength variable
+
+[xc,yc,var_theta,lambda] = generateBendingCurve(var_s, curve_props);
+```
+<p align="center">
+  <img src="https://github.com/nazir-ust/flexflip/blob/theory/pictures/example_bending_curve.jpg" alt="rockwalk with UR-10 robot arm"/>
+</p>
 
 
 ### (Minimum) coefficient of friction to keep the curve steady
