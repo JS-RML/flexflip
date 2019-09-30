@@ -1,6 +1,6 @@
 # Modeling for ***flexflip***
 
-Here, we fist generate a minimum bending energy curve of unit length subject to start and end-point constraints, and then plot a) the bending energy of the curve, and b) the minimum coefficient of friction required at the end-point to keep the curve steady in various configurations. 
+Here, we fist generate a minimum bending energy curve of unit length subject to start and end-point constraints, and then plot a) the bending energy of the curve, and b) the minimum coefficient of friction required at the end-point to keep the curve steady in various configurations.
 
 ### Generate a minimum bending energy curve
 
@@ -15,7 +15,7 @@ function fvalue = objectiveFunction(var_theta, var_s)
     OUTPUT:
     fvalue: (unfactored) bending energy of the curve
     %}
-    
+
     dthetads = gradient(var_theta)./gradient(var_s); %curvature
 
     fvalue = trapz(var_s, dthetads.^2);
@@ -25,7 +25,7 @@ end
 Specify start and end point constraint. Note, the start point is clamped. End point tangent is unconstrained.
 ```Matlab
 function [c_ineq, c_eq] = constraintFunctions(var_theta, var_s, curve_props)
-  
+
     % start point tangent constraint
     c_eq_1 = var_theta(1)- curve_props.startPointSlope;
 
@@ -56,7 +56,7 @@ options = optimoptions('fmincon',...
                        'interior-point');
 
 options.MaxFunctionEvaluations = 1e5;
-options.OptimalityTolerance= 1e-2; 
+options.OptimalityTolerance= 1e-2;
 options.StepTolerance = 1e-3;
 
 [var_theta,fval,exitflag,output,lambda,grad,hessian] = ...
@@ -66,7 +66,7 @@ options.StepTolerance = 1e-3;
                 @(var_theta)constraintFunctions(var_theta, var_s, curve_props),...
                 options);
 ```
- 
+
 Finally, express the curve in Cartesian coordinates.
 ```Matlab
     % return x,y coordinates of the bending curve
@@ -88,13 +88,13 @@ var_s = linspace(0, curve_props.length, intervals); % arclength variable
 [xc,yc,var_theta,lambda] = generateBendingCurve(var_s, curve_props);
 ```
 <p align="center">
-  <img src="https://github.com/nazir-ust/flexflip/blob/theory/pictures/example_bending_curve.jpg" alt="example minimum bending energy curve"/>
+  <img src="https://github.com/HKUST-RML/flexflip/blob/theory/pictures/example_bending_curve.jpg" alt="example minimum bending energy curve"/>
 </p>
 
 ### Flexure Energy
 The optimal value of the objective function is the (unfactored-without rigidity constant) flexure/bending energy of the curve. Here is how it is distributed for various end-point configurations.
 <p align="center">
-  <img src="https://github.com/nazir-ust/flexflip/blob/theory/pictures/bending_energy.jpg" alt="bending energy of the curve"/>
+  <img src="https://github.com/HKUST-RML/flexflip/blob/theory/pictures/bending_energy.jpg" alt="bending energy of the curve"/>
 </p>
 
 
@@ -113,23 +113,22 @@ function CoF = computeCoF(lambda, var_theta)
     OUTPUT:
     CoF: coefficient of friction
     %}
-    
+
     F_contact = [lambda.eqnonlin(2), lambda.eqnonlin(3), 0]; % contact/constraint force
-    
-    
+
+
     [end_normal_u, end_normal_v] = computeEndPointNormal(var_theta);
     contact_normal = [end_normal_u; end_normal_v; 0];
-    
-    
+
+
     cone_theta = atan2(norm(cross(F_contact,contact_normal)),dot(F_contact,contact_normal));
-    
-    
+
+
     CoF = tan(cone_theta);
 
 end
 ```
 Here is how the CoF is distributed for various end-point configurations of the curve.
 <p align="center">
-  <img src="https://github.com/nazir-ust/flexflip/blob/theory/pictures/cof.jpg" alt="coefficient of friction"/>
+  <img src="https://github.com/HKUST-RML/flexflip/blob/theory/pictures/cof.jpg" alt="coefficient of friction"/>
 </p>
-
