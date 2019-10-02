@@ -88,13 +88,13 @@ var_s = linspace(0, curve_props.length, intervals); % arclength variable
 [xc,yc,var_theta,lambda] = generateBendingCurve(var_s, curve_props);
 ```
 <p align="center">
-  <img src="https://github.com/HKUST-RML/flexflip/blob/theory/pictures/example_bending_curve.jpg" alt="example minimum bending energy curve"/>
+  <img src="https://github.com/HKUST-RML/flexflip/blob/master/pictures/example_bending_curve.jpg" alt="example minimum bending energy curve"/>
 </p>
 
 ### Flexure Energy
 The optimal value of the objective function is the (unfactored-without rigidity constant) flexure/bending energy of the curve. Here is how it is distributed for various end-point configurations.
 <p align="center">
-  <img src="https://github.com/HKUST-RML/flexflip/blob/theory/pictures/bending_energy.jpg" alt="bending energy of the curve"/>
+  <img src="https://github.com/HKUST-RML/flexflip/blob/master/pictures/bending_energy.jpg" alt="bending energy of the curve"/>
 </p>
 
 
@@ -130,5 +130,5 @@ end
 ```
 Here is how the CoF is distributed for various end-point configurations of the curve.
 <p align="center">
-  <img src="https://github.com/HKUST-RML/flexflip/blob/theory/pictures/cof.jpg" alt="coefficient of friction"/>
+  <img src="https://github.com/HKUST-RML/flexflip/blob/master/pictures/cof.jpg" alt="coefficient of friction"/>
 </p>
