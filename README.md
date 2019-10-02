@@ -18,7 +18,7 @@
 
 
 ## Theory:
-*The contents of the following paragraph are not applicable any more as the codes have been changed. May be we can just refer the readers to the `flex flip theory` directory*
+*The contents of the following paragraph are not applicable any more as the codes have been changed. May be we can just refer the readers to the `flex flip theory` directory - AN*
 
 **Modeling and Manipulating a Linear Deformable Object** :
 The directory `DFF-Manipulation-master/modeling` contains 1) a `MATLAB` function to generate minimum bending energy curves given the $(x,y)$-coordinates of the right end-point. The left end-point is assumed clamped at the origin. The slope at the left end is set to zero, whereas the right slope is left free. This can be modified in-code.
