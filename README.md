@@ -16,7 +16,7 @@
 
 *If you use flexflip or its sub-modules for your reasearch or application, please star this repo and cite our related paper.*
 
-<!-- ## Theory:
+
 
 **Modeling and Manipulating a Linear Deformable Object** :
 The directory `DFF-Manipulation-master/modeling` contains 1) a `MATLAB` function to generate minimum bending energy curves given the $(x,y)$-coordinates of the right end-point. The left end-point is assumed clamped at the origin. The slope at the left end is set to zero, whereas the right slope is left free. This can be modified in-code.
@@ -31,7 +31,7 @@ Knowledge of variation of bending energy and the minimum coefficient of friction
 
 <p align="center">
   <img height="500" src="https://github.com/HKUST-RML/flexflip/blob/master/DFF-Manipulation-master/media/fig8">
-</p> -->
+</p> 
 
 ## Hardware Setup:
 The following figure shows the setup on sight. Our gripper is, mounted on UR10, is to be controlled to turn the paper strip, localized autonomously through AprilTag. Range of the initialconfigurations of the hand to be tested in our page-turning experiments. And here are listed iterms we adopted for experiments:
