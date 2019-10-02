@@ -23,14 +23,14 @@ The directory `DFF-Manipulation-master/modeling` contains 1) a `MATLAB` function
 2) a `MATLAB` scripts that considers a set of feasible right endpoint locations and obtains the minimum bending energy curve for each. Simultaneously, the magnitude of total surface energy as well as the minimum coefficient of friction required to maintain contact \#2 is computed. The following figure was generated using this script.
 
 <p align="center">
-  <img height="300" src="https://github.com/HKUST-RML/flexflip/blob/master/pictures/bending_energy.jpg">
+  <img height="400" src="https://github.com/HKUST-RML/flexflip/blob/master/pictures/bending_energy.jpg">
 </p>
 
 
 Knowledge of variation of bending energy and the minimum coefficient of friction can help in planning the path of contact \#2 such as shown in the following figure.
 
 <p align="center">
-  <img height="300" src="https://github.com/HKUST-RML/flexflip/blob/master/pictures/cof.jpg">
+  <img height="400" src="https://github.com/HKUST-RML/flexflip/blob/master/pictures/cof.jpg">
 </p> 
 
 ## Hardware Setup:
