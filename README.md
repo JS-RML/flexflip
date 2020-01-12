@@ -65,6 +65,10 @@ test the gripper:
 ```
 rostopic pub soft std_msgs/UInt16 1 --once
 ```
+Note: if the serial port permission denied:
+```
+sudo chmod a+rw /dev/ttyACM0
+```
 #### 2.Setup apriltags detection:
 run apriltag with usb_cam:
 ```
