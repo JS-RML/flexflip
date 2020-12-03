@@ -225,7 +225,7 @@ link_directories(${catkin_LIBRARY_DIRS})
 # )
 install(DIRECTORY launch DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION})
 install(PROGRAMS
-  scripts/ur10_myplan_python_test.py
+#  scripts/ur10_myplan_python_test.py
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 
