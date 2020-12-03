@@ -11,7 +11,7 @@ import moveit_msgs.msg
 import geometry_msgs.msg
 import time
 import roslib; roslib.load_manifest('ur_driver')
-roslib.load_manifest('ur_moveit_myplan')
+roslib.load_manifest('flexflip')
 import rospy
 import actionlib
 import tf
