@@ -2,7 +2,7 @@
 
 Here, we fist generate a minimum bending energy curve of unit length subject to start and end-point constraints, and then plot a) the bending energy of the curve, and b) the minimum coefficient of friction required at the end-point to keep the curve steady in various configurations.
 
-### Generate a minimum bending energy curve
+### 1) Generate a minimum bending energy curve
 
 First, define the objective function. We intend to minimize the square of the curvature along the length of the curve. This is proportional to the bending energy of the curve.
 ```Matlab
@@ -91,7 +91,7 @@ var_s = linspace(0, curve_props.length, intervals); % arclength variable
   <img src="https://github.com/HKUST-RML/flexflip/blob/master/pictures/example_bending_curve.jpg" alt="example minimum bending energy curve"/>
 </p>
 
-### Flexure Energy
+### 2) Flexure Energy
 The optimal value of the objective function is the (unfactored-without rigidity constant) flexure/bending energy of the curve. Here is how it is distributed for various end-point configurations.
 <p align="center">
   <img src="https://github.com/HKUST-RML/flexflip/blob/master/pictures/bending_energy.jpg" alt="bending energy of the curve"/>
@@ -99,7 +99,7 @@ The optimal value of the objective function is the (unfactored-without rigidity 
 
 
 
-### (Minimum) coefficient of friction to keep the curve steady
+### 3) Minimum coefficient of friction to keep the curve steady
 The Lagrange multipliers corresponding to the end-point constraints on the curve can be used to determine the minimum coefficient of friction required at the end-point to keep curve in quasi-static equilibrium.  
 
 ```Matlab
